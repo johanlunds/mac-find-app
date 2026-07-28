@@ -1,0 +1,9 @@
+# SwiftPM
+.build/
+.swiftpm/
+
+# Build output: the .app bundle and generated icon artifacts
+# (all reproducible via Scripts/build-app.sh)
+build/
+
+.DS_Store
