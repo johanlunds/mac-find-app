@@ -67,8 +67,10 @@ regenerate entries:
 - Right-click a row — **Regenerate This App** / **Show in Finder**.
 
 Generation spawns your local `claude` CLI (research only — the CLI returns
-JSON, the app merges and saves it). Each save keeps a backup of the previous
-catalog at `catalog.json.bak`. The search index reloads live as batches finish.
+JSON, the app merges and saves it). Results are merged and saved once, after
+all batches finished regularly — a cancelled or failed run discards them. Each
+save keeps the previous catalog as a timestamped backup
+(`catalog.yyyyMMdd-HHmmss-SSS.backup.json`, newest 5 kept).
 
 On **first launch** (no catalog in Application Support yet) the app opens a
 welcome pane offering **Analyze My Apps** / **Skip for Now** — name-based

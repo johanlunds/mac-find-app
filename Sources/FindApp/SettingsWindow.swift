@@ -11,6 +11,8 @@ final class SettingsWindowController {
     // Set once by the app delegate at launch.
     var store: CatalogStore!
     var generator: CatalogGenerator!
+    /// Invoked whenever the settings window closes (delegate shows the panel).
+    var onClose: (() -> Void)?
 
     func show(welcome: Bool = false) {
         if window == nil {
@@ -21,6 +23,11 @@ final class SettingsWindowController {
             w.title = "Find App Settings"
             w.isReleasedWhenClosed = false
             w.center()
+            NotificationCenter.default.addObserver(
+                forName: NSWindow.willCloseNotification, object: w, queue: .main
+            ) { [weak self] _ in
+                Task { @MainActor in self?.onClose?() }
+            }
             window = w
         }
         let hosting = NSHostingView(
@@ -42,4 +49,8 @@ final class SettingsWindowController {
     }
 
     var isVisible: Bool { window?.isVisible ?? false }
+
+    func close() {
+        window?.close()
+    }
 }

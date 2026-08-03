@@ -76,19 +76,20 @@ final class CatalogGenerator: ObservableObject {
                 return
             }
 
-            var added = 0
+            // Entries are collected across batches and only merged + saved
+            // (one timestamped backup) after ALL batches completed regularly —
+            // a cancelled or failed run discards its results.
+            var collected: [CatalogEntry] = []
             let batches = stride(from: 0, to: targets.count, by: Self.batchSize).map {
                 Array(targets[$0..<min($0 + Self.batchSize, targets.count)])
             }
             for batch in batches {
                 if Task.isCancelled { break }
                 let names = batch.map(\.name).joined(separator: ", ")
-                self.state = .running(done: added, total: targets.count, current: names)
+                self.state = .running(done: collected.count, total: targets.count,
+                                      current: names)
                 do {
-                    let entries = try await self.runBatch(cli: cli, batch: batch)
-                    guard !Task.isCancelled, let store else { break }
-                    store.merge(entries: entries)
-                    added += entries.count
+                    collected += try await self.runBatch(cli: cli, batch: batch)
                 } catch is CancellationError {
                     break
                 } catch {
@@ -96,7 +97,14 @@ final class CatalogGenerator: ObservableObject {
                     return
                 }
             }
-            self.state = Task.isCancelled ? .idle : .finished(added: added)
+            if Task.isCancelled {
+                self.state = .idle
+            } else {
+                if let store, !collected.isEmpty {
+                    store.merge(entries: collected)
+                }
+                self.state = .finished(added: collected.count)
+            }
         }
     }
 
@@ -114,7 +122,8 @@ final class CatalogGenerator: ObservableObject {
         let proc = Process()
         proc.executableURL = URL(fileURLWithPath: cli)
         proc.arguments = ["-p", prompt, "--output-format", "json",
-                          "--allowedTools", "WebSearch"]
+                          "--effort", "medium",
+                          "--safe-mode", "--allowed-tools", "WebSearch"]
         // Neutral cwd so the CLI doesn't pick up any project context.
         proc.currentDirectoryURL = FileManager.default.temporaryDirectory
         let stdout = Pipe()

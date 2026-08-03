@@ -23,21 +23,38 @@ enum CatalogLoader {
             .appendingPathComponent("FindApp/catalog.json")
     }
 
-    /// Saves to Application Support, first backing up the existing file to
-    /// catalog.json.bak (replaced on every save).
+    /// Saves to Application Support, first backing up the existing file to a
+    /// timestamped sibling (catalog.yyyyMMdd-HHmmss-SSS.backup.json). The 5
+    /// newest backups are kept.
     static func save(_ catalog: Catalog) throws {
         let url = appSupportURL
         let fm = FileManager.default
-        try fm.createDirectory(at: url.deletingLastPathComponent(),
-                               withIntermediateDirectories: true)
+        let dir = url.deletingLastPathComponent()
+        try fm.createDirectory(at: dir, withIntermediateDirectories: true)
         if fm.fileExists(atPath: url.path) {
-            let backup = url.appendingPathExtension("bak")
+            let stamp = DateFormatter()
+            stamp.dateFormat = "yyyyMMdd-HHmmss-SSS"
+            let backup = dir.appendingPathComponent(
+                "catalog.\(stamp.string(from: Date())).backup.json")
             try? fm.removeItem(at: backup)
             try fm.copyItem(at: url, to: backup)
+            pruneBackups(in: dir, keeping: 5)
         }
         let encoder = JSONEncoder()
         encoder.outputFormatting = [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes]
         try encoder.encode(catalog).write(to: url)
+    }
+
+    /// Deletes all but the newest `keeping` backups (the timestamp in the
+    /// name makes lexicographic order chronological).
+    private static func pruneBackups(in dir: URL, keeping: Int) {
+        let fm = FileManager.default
+        let backups = ((try? fm.contentsOfDirectory(atPath: dir.path)) ?? [])
+            .filter { $0.hasPrefix("catalog.") && $0.hasSuffix(".backup.json") }
+            .sorted(by: >)
+        for old in backups.dropFirst(keeping) {
+            try? fm.removeItem(at: dir.appendingPathComponent(old))
+        }
     }
 
     /// Search order: $FINDAPP_CATALOG, ~/Library/Application Support/FindApp/catalog.json,

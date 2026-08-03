@@ -17,8 +17,8 @@ struct CatalogRow: Identifiable {
 }
 
 /// Owns the live catalog: joins it with the installed apps for display,
-/// merges generated entries, and persists to Application Support (with a
-/// .bak backup of the previous file on every save).
+/// merges generated entries, and persists to Application Support (keeping the
+/// 5 newest timestamped backups of the previous file).
 @MainActor
 final class CatalogStore: ObservableObject {
     @Published private(set) var catalog: Catalog

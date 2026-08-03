@@ -133,7 +133,13 @@ func runWindowSelfTest(controller: PanelController) {
     print("settings contentMinSize=\(minSize)")
     let minOK = minSize.width >= 560 && minSize.height >= 380
 
-    let ok = panelHidden && settingsVisible && appVisible && minOK
+    // Closing the settings window must bring the search panel back.
+    SettingsWindowController.shared.close()
+    RunLoop.current.run(until: Date().addingTimeInterval(0.3))
+    let panelBack = controller.panel.isVisible && !SettingsWindowController.shared.isVisible
+    print("panelBackAfterClose=\(panelBack)")
+
+    let ok = panelHidden && settingsVisible && appVisible && minOK && panelBack
     print(ok ? "PASS" : "FAIL")
     exit(ok ? 0 : 1)
 }
@@ -222,6 +228,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         let engine = SearchEngine(catalog: store.catalog)
         controller = PanelController(engine: engine)
+        // Closing Settings (including Skip for Now) hands over to the panel.
+        SettingsWindowController.shared.onClose = { [weak self] in
+            self?.controller.show()
+        }
         if windowSelfTest {
             runWindowSelfTest(controller: controller)
             return

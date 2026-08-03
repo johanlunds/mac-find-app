@@ -17,7 +17,8 @@ struct SettingsView: View {
                 },
                 onSkip: {
                     store.markWelcomeSeen()
-                    showWelcome = false
+                    // Closing the window brings up the search panel (onClose).
+                    SettingsWindowController.shared.close()
                 }
             )
         } else {
