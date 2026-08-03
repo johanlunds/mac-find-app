@@ -43,6 +43,8 @@ struct SettingsView: View {
             if case .running = generator.state {
                 progressBar
                 Divider()
+            } else {
+                statusBanner
             }
             rowList
         }
@@ -97,6 +99,33 @@ struct SettingsView: View {
         }
     }
 
+    /// Failure/success banner shown where the progress bar sits while running
+    /// (above the filter field).
+    @ViewBuilder
+    private var statusBanner: some View {
+        switch generator.state {
+        case .failed(let message):
+            Label(message, systemImage: "exclamationmark.triangle")
+                .foregroundStyle(.orange)
+                .font(.callout)
+                .padding(.horizontal, 16)
+                .padding(.vertical, 10)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            Divider()
+        case .finished(let added) where added > 0:
+            Label("Updated \(added) app\(added == 1 ? "" : "s"). You can now close this window.",
+                  systemImage: "checkmark.circle")
+                .foregroundStyle(.green)
+                .font(.callout)
+                .padding(.horizontal, 16)
+                .padding(.vertical, 10)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            Divider()
+        default:
+            EmptyView()
+        }
+    }
+
     private var rowList: some View {
         VStack(spacing: 0) {
             HStack {
@@ -108,27 +137,6 @@ struct SettingsView: View {
             .padding(.horizontal, 16)
             .padding(.vertical, 8)
             Divider()
-
-            switch generator.state {
-            case .failed(let message):
-                Label(message, systemImage: "exclamationmark.triangle")
-                    .foregroundStyle(.orange)
-                    .font(.callout)
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 10)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                Divider()
-            case .finished(let added) where added > 0:
-                Label("Updated \(added) apps.", systemImage: "checkmark.circle")
-                    .foregroundStyle(.green)
-                    .font(.callout)
-                    .padding(.horizontal, 16)
-                    .padding(.vertical, 10)
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                Divider()
-            default:
-                EmptyView()
-            }
 
             List(filteredRows) { row in
                 CatalogRowView(row: row) {
@@ -159,16 +167,15 @@ struct CatalogRowView: View {
                         .foregroundStyle(.tertiary)
                         .lineLimit(1)
                         .truncationMode(.middle)
-                    if row.isMissing {
-                        Text("No description")
-                            .font(.system(size: 9, weight: .semibold))
-                            .padding(.horizontal, 5)
-                            .padding(.vertical, 1.5)
-                            .background(Capsule().fill(Color.orange.opacity(0.2)))
-                            .foregroundStyle(.orange)
-                    }
                 }
-                if !row.description.isEmpty {
+                if row.isMissing {
+                    Text("No description")
+                        .font(.system(size: 9, weight: .semibold))
+                        .padding(.horizontal, 5)
+                        .padding(.vertical, 1.5)
+                        .background(Capsule().fill(Color.orange.opacity(0.2)))
+                        .foregroundStyle(.orange)
+                } else if !row.description.isEmpty {
                     Text(row.description)
                         .font(.system(size: 11.5))
                         .foregroundStyle(.secondary)
