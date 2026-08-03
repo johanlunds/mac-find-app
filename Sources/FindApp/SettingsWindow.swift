@@ -19,15 +19,19 @@ final class SettingsWindowController {
                 styleMask: [.titled, .closable, .miniaturizable, .resizable],
                 backing: .buffered, defer: false)
             w.title = "Find App Settings"
-            w.minSize = NSSize(width: 560, height: 380)
             w.isReleasedWhenClosed = false
             w.center()
             window = w
         }
         let hosting = NSHostingView(
-            rootView: SettingsView(store: store, generator: generator, showWelcome: welcome))
-        // Don't let SwiftUI's ideal size shrink the window; keep our frame.
-        hosting.sizingOptions = []
+            rootView: SettingsView(store: store, generator: generator, showWelcome: welcome)
+                .frame(minWidth: 560, minHeight: 380))
+        // SwiftUI owns the window's sizing constraints when an NSHostingView
+        // is the content view: .minSize forwards the root view's minimum to
+        // the window (a plain NSWindow.minSize is ignored here), while leaving
+        // out .preferredContentSize keeps the ideal size from shrinking our
+        // 760×540 frame.
+        hosting.sizingOptions = .minSize
         window!.contentView = hosting
         NSApp.activate(ignoringOtherApps: true)
         window!.makeKeyAndOrderFront(nil)

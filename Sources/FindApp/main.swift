@@ -125,7 +125,15 @@ func runWindowSelfTest(controller: PanelController) {
     let settingsVisible = SettingsWindowController.shared.isVisible
     let appVisible = !NSApp.isHidden
     print("panelHidden=\(panelHidden) settingsVisible=\(settingsVisible) appVisible=\(appVisible)")
-    let ok = panelHidden && settingsVisible && appVisible
+
+    // The settings window must enforce a minimum content size (via the
+    // hosting view's .minSize sizing option).
+    let minSize = NSApp.windows.first { $0.title == "Find App Settings" }?
+        .contentMinSize ?? .zero
+    print("settings contentMinSize=\(minSize)")
+    let minOK = minSize.width >= 560 && minSize.height >= 380
+
+    let ok = panelHidden && settingsVisible && appVisible && minOK
     print(ok ? "PASS" : "FAIL")
     exit(ok ? 0 : 1)
 }
