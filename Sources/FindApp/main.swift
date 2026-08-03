@@ -141,7 +141,21 @@ func runWindowSelfTest(controller: PanelController) {
     let panelBack = controller.panel.isVisible && !SettingsWindowController.shared.isVisible
     print("panelBackAfterClose=\(panelBack)")
 
+    // ⌘W closes the settings window (the search panel ignores it by design).
+    SettingsWindowController.shared.show()
+    RunLoop.current.run(until: Date().addingTimeInterval(0.3))
+    let settingsWindow = NSApp.windows.first { $0.title == "Find App Settings" }!
+    let event = NSEvent.keyEvent(
+        with: .keyDown, location: .zero, modifierFlags: .command, timestamp: 0,
+        windowNumber: settingsWindow.windowNumber, context: nil, characters: "w",
+        charactersIgnoringModifiers: "w", isARepeat: false, keyCode: 13)!
+    _ = NSApp.mainMenu!.performKeyEquivalent(with: event)
+    RunLoop.current.run(until: Date().addingTimeInterval(0.3))
+    let settingsClosed = !SettingsWindowController.shared.isVisible
+    print("cmdW closes settings=\(settingsClosed)")
+
     let ok = panelHidden && settingsVisible && appVisible && minOK && panelBack
+        && settingsClosed
     print(ok ? "PASS" : "FAIL")
     exit(ok ? 0 : 1)
 }
