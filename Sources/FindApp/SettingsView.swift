@@ -78,11 +78,19 @@ struct SettingsView: View {
         if case let .running(done, total, current) = generator.state {
             VStack(alignment: .leading, spacing: 6) {
                 ProgressView(value: Double(done), total: Double(max(total, 1)))
-                Text("Analyzing \(done)/\(total) — \(current)")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .lineLimit(1)
-                    .truncationMode(.tail)
+                HStack(spacing: 6) {
+                    // The determinate bar only moves per finished batch, so a
+                    // small spinner signals that work is ongoing in between.
+                    ProgressView()
+                        .progressViewStyle(.circular)
+                        .controlSize(.small)
+                        .scaleEffect(0.7)
+                    Text("Analyzing \(done)/\(total) — \(current)")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .lineLimit(1)
+                        .truncationMode(.tail)
+                }
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 10)
