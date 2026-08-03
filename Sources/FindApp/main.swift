@@ -52,7 +52,9 @@ func renderSettingsPreview(to path: String, welcome: Bool) {
     let store = CatalogStore()
     let generator = CatalogGenerator()
     let view = NSHostingView(rootView:
-        SettingsView(store: store, generator: generator, showWelcome: welcome))
+        SettingsView(store: store, generator: generator,
+                     engine: SearchEngine(catalog: store.catalog),
+                     showWelcome: welcome))
     view.frame = NSRect(x: 0, y: 0, width: 760, height: 540)
     // List is NSTableView-backed and only populates inside a window with a
     // few runloop turns.
@@ -227,6 +229,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
 
         let engine = SearchEngine(catalog: store.catalog)
+        SettingsWindowController.shared.engine = engine
         controller = PanelController(engine: engine)
         // Closing Settings (including Skip for Now) hands over to the panel.
         SettingsWindowController.shared.onClose = { [weak self] in

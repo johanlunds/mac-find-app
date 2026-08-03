@@ -40,6 +40,7 @@ build/             generated: "Find App.app", AppIcon.icns (gitignored)
 swift run                 # run directly
 Scripts/build-app.sh      # build "build/Find App.app" (also installs the catalog)
 cp -R "build/Find App.app" /Applications/
+open -a "Find App.app"
 ```
 
 - The search field is focused automatically when the app opens/activates.

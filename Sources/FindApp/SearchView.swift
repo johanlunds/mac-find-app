@@ -262,6 +262,6 @@ struct ResultRow: View {
     }
 
     private var icon: NSImage {
-        NSWorkspace.shared.icon(forFile: result.url.path)
+        AppIcons.icon(for: result.url)
     }
 }

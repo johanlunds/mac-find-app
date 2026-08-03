@@ -11,6 +11,7 @@ final class SettingsWindowController {
     // Set once by the app delegate at launch.
     var store: CatalogStore!
     var generator: CatalogGenerator!
+    var engine: SearchEngine!
     /// Invoked whenever the settings window closes (delegate shows the panel).
     var onClose: (() -> Void)?
 
@@ -31,7 +32,8 @@ final class SettingsWindowController {
             window = w
         }
         let hosting = NSHostingView(
-            rootView: SettingsView(store: store, generator: generator, showWelcome: welcome)
+            rootView: SettingsView(store: store, generator: generator, engine: engine,
+                                   showWelcome: welcome)
                 .frame(minWidth: 560, minHeight: 380))
         // SwiftUI owns the window's sizing constraints when an NSHostingView
         // is the content view: .minSize forwards the root view's minimum to

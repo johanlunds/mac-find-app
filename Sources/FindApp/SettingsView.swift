@@ -4,6 +4,8 @@ import AppKit
 struct SettingsView: View {
     @ObservedObject var store: CatalogStore
     @ObservedObject var generator: CatalogGenerator
+    /// The same engine the search panel uses, so filtering behaves identically.
+    let engine: SearchEngine
     @State var showWelcome: Bool
     @State private var filter = ""
 
@@ -26,14 +28,13 @@ struct SettingsView: View {
         }
     }
 
+    /// Runs the panel's search (name/keyword/semantic scoring) over the rows,
+    /// in score order; an empty filter shows everything alphabetically.
     private var filteredRows: [CatalogRow] {
-        let f = filter.trimmingCharacters(in: .whitespaces).lowercased()
+        let f = filter.trimmingCharacters(in: .whitespaces)
         guard !f.isEmpty else { return store.rows }
-        return store.rows.filter {
-            $0.name.lowercased().contains(f)
-                || $0.description.lowercased().contains(f)
-                || $0.keywords.contains { $0.contains(f) }
-        }
+        let byId = Dictionary(uniqueKeysWithValues: store.rows.map { ($0.id, $0) })
+        return engine.search(f, limit: .max).compactMap { byId[$0.id] }
     }
 
     private var catalogPane: some View {
@@ -156,7 +157,7 @@ struct CatalogRowView: View {
 
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
-            Image(nsImage: NSWorkspace.shared.icon(forFile: row.url.path))
+            Image(nsImage: AppIcons.icon(for: row.url))
                 .resizable()
                 .frame(width: 32, height: 32)
             VStack(alignment: .leading, spacing: 4) {
@@ -268,13 +269,14 @@ struct WelcomeView: View {
             Text("Welcome to Find App")
                 .font(.title.weight(.semibold))
             Text("""
-                It lets you find apps by what they *do* — for example \
-                "menubar utility" or "code editor". To build its index, it \
-                analyzes your installed apps with AI (using your local \
-                `claude` CLI) and writes a short description for each one. \
-                The analysis takes a few minutes the first time.
+                Search your apps by what they *do*, not just their name — \
+                try "menubar utility", "edit photos" or "hide menu bar icons". \
+                To make that possible, Find App analyzes every installed app \
+                once with AI, writing a short description and keywords for \
+                each. The analysis takes a few minutes — you can keep using \
+                your Mac while it runs.
                 """)
-                .font(.system(size: 13))
+                .font(.system(size: 15).leading(.loose))
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.leading)
                 .frame(maxWidth: 440, alignment: .leading)
@@ -283,7 +285,7 @@ struct WelcomeView: View {
                 Button("Analyze My Apps", action: onAnalyze)
                     .keyboardShortcut(.defaultAction)
             }
-            Text("You can run this anytime from Settings.")
+            Text("Requires the `claude` CLI (Claude Code) · Rerun anytime from Settings")
                 .font(.caption)
                 .foregroundStyle(.tertiary)
             Spacer()
