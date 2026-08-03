@@ -62,7 +62,9 @@ final class CatalogGenerator: ObservableObject {
 
     // MARK: - Generation
 
-    func start(targets: [CatalogRow], store: CatalogStore) {
+    /// `instructions` is optional user-supplied context about the target apps
+    /// (for internal or self-made apps the model can't research).
+    func start(targets: [CatalogRow], store: CatalogStore, instructions: String? = nil) {
         guard !state.isRunning, !targets.isEmpty else { return }
         state = .running(done: 0, total: targets.count, current: "Locating claude CLI…")
 
@@ -89,7 +91,8 @@ final class CatalogGenerator: ObservableObject {
                 self.state = .running(done: collected.count, total: targets.count,
                                       current: names)
                 do {
-                    collected += try await self.runBatch(cli: cli, batch: batch)
+                    collected += try await self.runBatch(cli: cli, batch: batch,
+                                                         instructions: instructions)
                 } catch is CancellationError {
                     break
                 } catch {
@@ -117,8 +120,9 @@ final class CatalogGenerator: ObservableObject {
 
     // MARK: - One batch
 
-    private func runBatch(cli: String, batch: [CatalogRow]) async throws -> [CatalogEntry] {
-        let prompt = Self.prompt(for: batch)
+    private func runBatch(cli: String, batch: [CatalogRow],
+                          instructions: String? = nil) async throws -> [CatalogEntry] {
+        let prompt = Self.prompt(for: batch, instructions: instructions)
         let proc = Process()
         proc.executableURL = URL(fileURLWithPath: cli)
         proc.arguments = ["-p", prompt, "--output-format", "json",
@@ -145,10 +149,28 @@ final class CatalogGenerator: ObservableObject {
         return try Self.parseEntries(from: data)
     }
 
-    nonisolated static func prompt(for batch: [CatalogRow]) -> String {
+    nonisolated static func prompt(for batch: [CatalogRow],
+                                   instructions: String? = nil) -> String {
         let list = batch.map { row in
             "- file: \"\(row.id)\", name hint: \"\(row.name)\", bundleId: \(row.bundleId ?? "unknown")"
         }.joined(separator: "\n")
+
+        // User-supplied context wins over research: these are typically
+        // internal or self-made apps with no public information.
+        var userContext = ""
+        if let instructions,
+           !instructions.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+            userContext = """
+                The user supplied the following instructions about the app(s) below. \
+                Treat them as authoritative — more reliable than anything you know or \
+                can find online — and follow them when writing the description and \
+                keywords.
+                <user-instructions>
+                \(instructions)
+                </user-instructions>
+                """
+        }
+
         return """
         You are researching macOS applications for a search index used by a \
         Spotlight-like app finder. For each app listed below, produce a JSON object \
@@ -164,6 +186,8 @@ final class CatalogGenerator: ObservableObject {
         Use your own knowledge; use web search only for apps you don't recognize \
         (the bundle id is a strong hint). Apple system apps you can describe \
         directly.
+
+        \(userContext)
 
         Apps:
         \(list)

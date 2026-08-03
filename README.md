@@ -54,7 +54,7 @@ swift run FindApp --search "mac menubar app"       # test matching quality
 swift run FindApp --render-preview out.png "query" # offscreen panel screenshot
 swift run FindApp --render-settings out.png        # offscreen settings screenshot ("welcome" for first-run state)
 swift run FindApp --selftest-keys                  # key-handling self-test
-swift run FindApp --selftest-generate [fileKey]    # run real AI generation for missing apps (or one app)
+swift run FindApp --selftest-generate [fileKey] [instructions]  # run real AI generation (optionally with custom instructions)
 ```
 
 ## Settings & regenerating the catalog
@@ -65,7 +65,13 @@ regenerate entries:
 
 - **Generate Missing (n)** — describe apps that have no entry yet.
 - **Regenerate All** — rebuild every entry.
-- Right-click a row — **Regenerate This App** / **Show in Finder**.
+- Right-click a row — **Regenerate This App**, **Regenerate with Instructions…**
+  or **Show in Finder**.
+
+**Regenerate with Instructions…** opens a sheet where you describe the app
+yourself. Your notes are treated as authoritative — above anything the model
+knows or finds online — so internal company apps and your own projects get
+accurate descriptions and keywords.
 
 Generation spawns your local `claude` CLI (research only — the CLI returns
 JSON, the app merges and saves it). Results are merged and saved once, after

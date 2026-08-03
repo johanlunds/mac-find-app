@@ -8,6 +8,10 @@ struct SettingsView: View {
     let engine: SearchEngine
     @State var showWelcome: Bool
     @State private var filter = ""
+    /// The app whose custom-instructions sheet is open, if any.
+    @State private var instructionsTarget: CatalogRow?
+    /// Remembers what was typed per app for the rest of the session.
+    @State private var instructionsByApp: [String: String] = [:]
 
     var body: some View {
         if showWelcome {
@@ -141,12 +145,28 @@ struct SettingsView: View {
             Divider()
 
             List(filteredRows) { row in
-                CatalogRowView(row: row) {
-                    generator.start(targets: [row], store: store)
-                }
+                CatalogRowView(
+                    row: row,
+                    onRegenerate: { generator.start(targets: [row], store: store) },
+                    onRegenerateWithInstructions: { instructionsTarget = row }
+                )
                 .listRowSeparator(.visible)
             }
             .listStyle(.inset)
+            .sheet(item: $instructionsTarget) { row in
+                InstructionsSheet(
+                    row: row,
+                    text: Binding(
+                        get: { instructionsByApp[row.id] ?? "" },
+                        set: { instructionsByApp[row.id] = $0 }
+                    ),
+                    onCancel: { instructionsTarget = nil },
+                    onGenerate: { text in
+                        instructionsTarget = nil
+                        generator.start(targets: [row], store: store, instructions: text)
+                    }
+                )
+            }
         }
     }
 }
@@ -154,6 +174,7 @@ struct SettingsView: View {
 struct CatalogRowView: View {
     let row: CatalogRow
     let onRegenerate: () -> Void
+    let onRegenerateWithInstructions: () -> Void
 
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
@@ -192,10 +213,65 @@ struct CatalogRowView: View {
         .padding(.vertical, 5)
         .contextMenu {
             Button("Regenerate This App", action: onRegenerate)
+            Button("Regenerate with Instructions…", action: onRegenerateWithInstructions)
+            Divider()
             Button("Show in Finder") {
                 NSWorkspace.shared.activateFileViewerSelecting([row.url])
             }
         }
+    }
+}
+
+/// Lets the user supply authoritative context for one app before regenerating
+/// it — for internal or self-made apps the model can't research.
+struct InstructionsSheet: View {
+    let row: CatalogRow
+    @Binding var text: String
+    let onCancel: () -> Void
+    let onGenerate: (String) -> Void
+
+    var body: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack(spacing: 10) {
+                Image(nsImage: AppIcons.icon(for: row.url))
+                    .resizable()
+                    .frame(width: 32, height: 32)
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("Instructions for \(row.name)")
+                        .font(.headline)
+                    Text(row.id)
+                        .font(.system(size: 10))
+                        .foregroundStyle(.tertiary)
+                        .lineLimit(1)
+                        .truncationMode(.middle)
+                }
+            }
+
+            Text("Tell the AI what this app is — useful for internal or self-made apps with little or no public information. Your notes take priority over anything it knows or finds online, and can steer the description and keywords.")
+                .font(.callout)
+                .foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
+
+            TextEditor(text: $text)
+                .font(.system(size: 12))
+                .frame(minHeight: 120)
+                .padding(4)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 6)
+                        .strokeBorder(Color.primary.opacity(0.15))
+                )
+
+            HStack {
+                Spacer()
+                Button("Cancel", action: onCancel)
+                    .keyboardShortcut(.cancelAction)
+                Button("Generate") { onGenerate(text) }
+                    .keyboardShortcut(.defaultAction)
+                    .disabled(text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+            }
+        }
+        .padding(20)
+        .frame(width: 460)
     }
 }
 

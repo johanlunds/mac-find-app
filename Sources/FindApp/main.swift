@@ -74,10 +74,11 @@ func renderSettingsPreview(to path: String, welcome: Bool) {
 
 /// Runs the real generation pipeline for the missing apps (or a named file
 /// key) and exits — verifies CLI discovery, the claude run, parsing, merge,
-/// save and backup:  FindApp --selftest-generate [fileKey]
+/// save and backup:
+///   FindApp --selftest-generate [fileKey] [custom instructions]
 @MainActor
-func runGenerationSelfTest(fileKey: String?, store: CatalogStore,
-                           generator: CatalogGenerator) {
+func runGenerationSelfTest(fileKey: String?, instructions: String?,
+                           store: CatalogStore, generator: CatalogGenerator) {
     let targets: [CatalogRow]
     if let fileKey {
         guard let row = store.rows.first(where: { $0.id == fileKey }) else {
@@ -89,8 +90,9 @@ func runGenerationSelfTest(fileKey: String?, store: CatalogStore,
     }
     guard !targets.isEmpty else { print("nothing to generate"); exit(0) }
     print("generating \(targets.count): \(targets.map(\.id).joined(separator: ", "))")
+    if let instructions { print("instructions: \(instructions)") }
 
-    generator.start(targets: targets, store: store)
+    generator.start(targets: targets, store: store, instructions: instructions)
     var last = ""
     Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { _ in
         Task { @MainActor in
@@ -220,6 +222,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     var selfTest = false
     /// nil = off; "" = all missing; otherwise a single file key.
     var generateSelfTest: String?
+    var generateInstructions: String?
     var windowSelfTest = false
 
     var settingsPreview: (path: String, welcome: Bool)?
@@ -238,6 +241,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         SettingsWindowController.shared.generator = generator
         if let g = generateSelfTest {
             runGenerationSelfTest(fileKey: g.isEmpty ? nil : g,
+                                  instructions: generateInstructions,
                                   store: store, generator: generator)
             return
         }
@@ -309,6 +313,7 @@ if args.contains("--selftest-keys") { delegate.selfTest = true }
 if args.contains("--selftest-windows") { delegate.windowSelfTest = true }
 if let i = args.firstIndex(of: "--selftest-generate") {
     delegate.generateSelfTest = args.count > i + 1 ? args[i + 1] : ""
+    delegate.generateInstructions = args.count > i + 2 ? args[i + 2] : nil
 }
 app.delegate = delegate
 app.run()
