@@ -276,6 +276,12 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
         }
     }
 
+    /// Quitting mid-run would otherwise leave the batch CLI processes running
+    /// in the background, still consuming the user's Claude usage.
+    func applicationWillTerminate(_ notification: Notification) {
+        generator?.cancel()
+    }
+
     func applicationShouldHandleReopen(_ sender: NSApplication,
                                        hasVisibleWindows flag: Bool) -> Bool {
         if !SettingsWindowController.shared.isVisible {
