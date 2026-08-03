@@ -28,18 +28,6 @@ func buildMainMenu() -> NSMenu {
                     action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q")
     appItem.submenu = appMenu
 
-    // ⌘W closes the settings window. AppKit disables performClose: for windows
-    // without a close button, so the borderless search panel ignores it — Esc
-    // dismisses that one.
-    let windowItem = NSMenuItem()
-    main.addItem(windowItem)
-    let windowMenu = NSMenu(title: "Window")
-    windowMenu.addItem(withTitle: "Close",
-                       action: #selector(NSWindow.performClose(_:)), keyEquivalent: "w")
-    windowMenu.addItem(withTitle: "Minimize",
-                       action: #selector(NSWindow.performMiniaturize(_:)), keyEquivalent: "m")
-    windowItem.submenu = windowMenu
-
     let editItem = NSMenuItem()
     main.addItem(editItem)
     let edit = NSMenu(title: "Edit")
@@ -54,6 +42,18 @@ func buildMainMenu() -> NSMenu {
     edit.addItem(withTitle: "Select All",
                  action: #selector(NSText.selectAll(_:)), keyEquivalent: "a")
     editItem.submenu = edit
+
+    // ⌘W closes the settings window. AppKit disables performClose: for windows
+    // without a close button, so the borderless search panel ignores it — Esc
+    // dismisses that one.
+    let windowItem = NSMenuItem()
+    main.addItem(windowItem)
+    let windowMenu = NSMenu(title: "Window")
+    windowMenu.addItem(withTitle: "Close",
+                       action: #selector(NSWindow.performClose(_:)), keyEquivalent: "w")
+    windowMenu.addItem(withTitle: "Minimize",
+                       action: #selector(NSWindow.performMiniaturize(_:)), keyEquivalent: "m")
+    windowItem.submenu = windowMenu
 
     return main
 }
