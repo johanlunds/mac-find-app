@@ -112,6 +112,24 @@ func runGenerationSelfTest(fileKey: String?, store: CatalogStore,
     }
 }
 
+/// Reproduces the ⌘, scenario: with the panel focused, opening Settings must
+/// hide only the panel — not the settings window or the whole app.
+@MainActor
+func runWindowSelfTest(controller: PanelController) {
+    controller.show()
+    RunLoop.current.run(until: Date().addingTimeInterval(0.3))
+    SettingsWindowController.shared.show()
+    RunLoop.current.run(until: Date().addingTimeInterval(0.5))
+
+    let panelHidden = !controller.panel.isVisible
+    let settingsVisible = SettingsWindowController.shared.isVisible
+    let appVisible = !NSApp.isHidden
+    print("panelHidden=\(panelHidden) settingsVisible=\(settingsVisible) appVisible=\(appVisible)")
+    let ok = panelHidden && settingsVisible && appVisible
+    print(ok ? "PASS" : "FAIL")
+    exit(ok ? 0 : 1)
+}
+
 /// Verifies that the Edit-menu key equivalents reach the search field's editor.
 @MainActor
 func runKeyEquivalentSelfTest() {
@@ -172,6 +190,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
     var selfTest = false
     /// nil = off; "" = all missing; otherwise a single file key.
     var generateSelfTest: String?
+    var windowSelfTest = false
 
     var settingsPreview: (path: String, welcome: Bool)?
 
@@ -195,6 +214,10 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
         let engine = SearchEngine(catalog: store.catalog)
         controller = PanelController(engine: engine)
+        if windowSelfTest {
+            runWindowSelfTest(controller: controller)
+            return
+        }
 
         // Reload the search index whenever in-app generation updates the catalog.
         NotificationCenter.default.addObserver(
@@ -248,6 +271,7 @@ if args.count >= 3, args[1] == "--render-settings" {
     delegate.settingsPreview = (path: args[2], welcome: args.contains("welcome"))
 }
 if args.contains("--selftest-keys") { delegate.selfTest = true }
+if args.contains("--selftest-windows") { delegate.windowSelfTest = true }
 if let i = args.firstIndex(of: "--selftest-generate") {
     delegate.generateSelfTest = args.count > i + 1 ? args[i + 1] : ""
 }

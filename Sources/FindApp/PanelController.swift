@@ -77,7 +77,11 @@ final class PanelController {
 
     func hide() {
         panel.orderOut(nil)
-        NSApp.hide(nil)
+        // Yield focus back to the previous app only when no other window of
+        // ours (e.g. Settings) is open — NSApp.hide would hide those too.
+        if !SettingsWindowController.shared.isVisible {
+            NSApp.hide(nil)
+        }
     }
 
     /// Exposed for the offscreen preview renderer.
