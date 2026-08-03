@@ -151,7 +151,7 @@ struct CatalogRowView: View {
                 .resizable()
                 .frame(width: 32, height: 32)
             VStack(alignment: .leading, spacing: 4) {
-                HStack(spacing: 8) {
+                HStack(alignment: .firstTextBaseline, spacing: 8) {
                     Text(row.name)
                         .font(.system(size: 13, weight: .semibold))
                     Text(row.id)
