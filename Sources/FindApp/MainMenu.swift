@@ -4,6 +4,7 @@ import AppKit
 /// main-menu key-equivalent matching, not via the text system's key bindings —
 /// so without an Edit menu those keystrokes do nothing. (⌘⌫ works regardless
 /// because `deleteToBeginningOfLine:` *is* in the standard key-binding table.)
+@MainActor
 func buildMainMenu() -> NSMenu {
     let main = NSMenu()
 
@@ -13,6 +14,12 @@ func buildMainMenu() -> NSMenu {
     appMenu.addItem(withTitle: "About Find App",
                     action: #selector(NSApplication.orderFrontStandardAboutPanel(_:)),
                     keyEquivalent: "")
+    appMenu.addItem(.separator())
+    let settings = NSMenuItem(title: "Settings…",
+                              action: #selector(SettingsWindowController.openSettings(_:)),
+                              keyEquivalent: ",")
+    settings.target = SettingsWindowController.shared
+    appMenu.addItem(settings)
     appMenu.addItem(.separator())
     appMenu.addItem(withTitle: "Hide Find App",
                     action: #selector(NSApplication.hide(_:)), keyEquivalent: "h")

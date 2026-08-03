@@ -46,27 +46,52 @@ cp -R "build/Find App.app" /Applications/
 - **↑/↓** select, **Enter** launches, **Esc** hides, **⌘Q** quits.
 - Reopening the app (Dock/Spotlight/Raycast) brings the panel back.
 
-Test matching from the terminal:
+Developer flags:
 
 ```sh
-swift run FindApp --search "mac menubar app"
+swift run FindApp --search "mac menubar app"       # test matching quality
+swift run FindApp --render-preview out.png "query" # offscreen panel screenshot
+swift run FindApp --render-settings out.png        # offscreen settings screenshot ("welcome" for first-run state)
+swift run FindApp --selftest-keys                  # key-handling self-test
+swift run FindApp --selftest-generate [fileKey]    # run real AI generation for missing apps (or one app)
 ```
 
-## Regenerating the catalog
+## Settings & regenerating the catalog
 
-When apps are added or removed:
+Open **Settings** (⌘, — or the gear in the search panel's footer) to browse
+every installed app with its description and keyword chips, filter them, and
+regenerate entries:
+
+- **Generate Missing (n)** — describe apps that have no entry yet.
+- **Regenerate All** — rebuild every entry.
+- Right-click a row — **Regenerate This App** / **Show in Finder**.
+
+Generation spawns your local `claude` CLI (research only — the CLI returns
+JSON, the app merges and saves it). Each save keeps a backup of the previous
+catalog at `catalog.json.bak`. The search index reloads live as batches finish.
+
+On **first launch** (no catalog in Application Support yet) the app opens a
+welcome pane offering **Analyze My Apps** / **Skip for Now** — name-based
+search works fine until the analysis runs.
+
+The older script route still works too:
 
 ```sh
 Scripts/regenerate-catalog.sh
 ```
 
-This uses the `claude` CLI to research new apps (bundle id + web search), prune
-removed ones, and installs the updated catalog to
-`~/Library/Application Support/FindApp/catalog.json`.
+Both write the catalog to `~/Library/Application Support/FindApp/catalog.json`.
 
 Catalog search order: `$FINDAPP_CATALOG` → `~/Library/Application
 Support/FindApp/catalog.json` → next to the executable / bundle resources →
 `Resources/catalog.json` in the current directory.
+
+To test the first-run flow, clear the app's user defaults (and move the
+Application Support catalog aside):
+
+```sh
+defaults delete com.johanlunds.FindApp
+```
 
 The icon is generated from [Icon/make-icon.swift](Icon/make-icon.swift);
 `build-app.sh` re-renders it automatically when that file changes.

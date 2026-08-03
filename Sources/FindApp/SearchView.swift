@@ -24,6 +24,12 @@ final class SearchViewModel: ObservableObject {
         onResultsChanged?()
     }
 
+    /// Re-runs the current query (e.g. after the catalog was regenerated).
+    func requery() {
+        guard !query.isEmpty else { return }
+        runSearch()
+    }
+
     func reset() {
         query = ""
         results = []
@@ -182,6 +188,16 @@ struct FooterBar: View {
                 KeyHint(key: "↑↓", label: "navigate")
                 KeyHint(key: "↵", label: "open")
             }
+            Button {
+                SettingsWindowController.shared.show()
+            } label: {
+                Image(systemName: "gearshape")
+                    .font(.system(size: 10))
+                    .foregroundStyle(.tertiary)
+            }
+            .buttonStyle(.plain)
+            .padding(.leading, 10)
+            .help("Find App Settings (⌘,)")
         }
         .padding(.horizontal, 12)
         .frame(height: 27)

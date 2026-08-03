@@ -1,4 +1,5 @@
 import AppKit
+import SwiftUI
 
 // CLI mode for testing matching quality: FindApp --search "some query"
 let args = CommandLine.arguments
@@ -42,6 +43,73 @@ func renderPreview(to path: String, query: String) {
         .write(to: URL(fileURLWithPath: path))
     print("wrote \(path) (\(controller.model.results.count) results)")
     exit(0)
+}
+
+/// Renders the settings view offscreen for design review:
+///   FindApp --render-settings out.png [welcome]
+@MainActor
+func renderSettingsPreview(to path: String, welcome: Bool) {
+    let store = CatalogStore()
+    let generator = CatalogGenerator()
+    let view = NSHostingView(rootView:
+        SettingsView(store: store, generator: generator, showWelcome: welcome))
+    view.frame = NSRect(x: 0, y: 0, width: 760, height: 540)
+    // List is NSTableView-backed and only populates inside a window with a
+    // few runloop turns.
+    let window = NSWindow(contentRect: view.frame, styleMask: [.titled],
+                          backing: .buffered, defer: false)
+    window.contentView = view
+    window.orderBack(nil)
+    RunLoop.current.run(until: Date().addingTimeInterval(0.5))
+    view.layoutSubtreeIfNeeded()
+    guard let rep = view.bitmapImageRepForCachingDisplay(in: view.bounds) else { exit(1) }
+    view.cacheDisplay(in: view.bounds, to: rep)
+    try! rep.representation(using: .png, properties: [:])!
+        .write(to: URL(fileURLWithPath: path))
+    print("wrote \(path) (\(store.rows.count) rows, \(store.missingRows.count) missing)")
+    exit(0)
+}
+
+/// Runs the real generation pipeline for the missing apps (or a named file
+/// key) and exits — verifies CLI discovery, the claude run, parsing, merge,
+/// save and backup:  FindApp --selftest-generate [fileKey]
+@MainActor
+func runGenerationSelfTest(fileKey: String?, store: CatalogStore,
+                           generator: CatalogGenerator) {
+    let targets: [CatalogRow]
+    if let fileKey {
+        guard let row = store.rows.first(where: { $0.id == fileKey }) else {
+            print("FAIL: no installed app with file key \(fileKey)"); exit(1)
+        }
+        targets = [row]
+    } else {
+        targets = store.missingRows
+    }
+    guard !targets.isEmpty else { print("nothing to generate"); exit(0) }
+    print("generating \(targets.count): \(targets.map(\.id).joined(separator: ", "))")
+
+    generator.start(targets: targets, store: store)
+    var last = ""
+    Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true) { _ in
+        Task { @MainActor in
+            let state = generator.state
+            let desc = "\(state)"
+            if desc != last { print(desc); last = desc }
+            switch state {
+            case .finished(let added):
+                for t in targets {
+                    if let entry = store.catalog.apps.first(where: { $0.file == t.id }) {
+                        print("→ \(entry.name): \(entry.description)")
+                        print("  keywords: \(entry.keywords.joined(separator: ", "))")
+                    }
+                }
+                exit(added == targets.count ? 0 : 1)
+            case .failed(let message):
+                print("FAIL: \(message)"); exit(1)
+            default: break
+            }
+        }
+    }
 }
 
 /// Verifies that the Edit-menu key equivalents reach the search field's editor.
@@ -98,27 +166,64 @@ func runKeyEquivalentSelfTest() {
 
 final class AppDelegate: NSObject, NSApplicationDelegate {
     var controller: PanelController!
+    var store: CatalogStore!
+    var generator: CatalogGenerator!
     var previewArgs: (path: String, query: String)?
     var selfTest = false
+    /// nil = off; "" = all missing; otherwise a single file key.
+    var generateSelfTest: String?
+
+    var settingsPreview: (path: String, welcome: Bool)?
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         if selfTest { runKeyEquivalentSelfTest() }
         if let p = previewArgs {
             renderPreview(to: p.path, query: p.query)
         }
-        let engine = SearchEngine(catalog: CatalogLoader.load())
+        if let s = settingsPreview {
+            renderSettingsPreview(to: s.path, welcome: s.welcome)
+        }
+        store = CatalogStore()
+        generator = CatalogGenerator()
+        SettingsWindowController.shared.store = store
+        SettingsWindowController.shared.generator = generator
+        if let g = generateSelfTest {
+            runGenerationSelfTest(fileKey: g.isEmpty ? nil : g,
+                                  store: store, generator: generator)
+            return
+        }
+
+        let engine = SearchEngine(catalog: store.catalog)
         controller = PanelController(engine: engine)
-        controller.show()
+
+        // Reload the search index whenever in-app generation updates the catalog.
+        NotificationCenter.default.addObserver(
+            forName: .catalogDidChange, object: nil, queue: .main
+        ) { [weak self] note in
+            guard let catalog = note.object as? Catalog else { return }
+            Task { @MainActor in
+                engine.reload(catalog: catalog)
+                self?.controller.model.requery()
+            }
+        }
+
+        if store.isFirstRun {
+            SettingsWindowController.shared.show(welcome: true)
+        } else {
+            controller.show()
+        }
     }
 
     func applicationShouldHandleReopen(_ sender: NSApplication,
                                        hasVisibleWindows flag: Bool) -> Bool {
-        controller.show()
+        if !SettingsWindowController.shared.isVisible {
+            controller.show()
+        }
         return true
     }
 
     func applicationDidBecomeActive(_ notification: Notification) {
-        if !controller.panel.isVisible {
+        if !controller.panel.isVisible && !SettingsWindowController.shared.isVisible {
             controller.show()
         }
     }
@@ -126,7 +231,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
 let app = NSApplication.shared
 app.setActivationPolicy(.regular)
-app.mainMenu = buildMainMenu()
+// Top-level main.swift code runs on the main thread but isn't statically
+// MainActor-isolated; assumeIsolated bridges that for the menu build.
+MainActor.assumeIsolated { NSApplication.shared.mainMenu = buildMainMenu() }
 // Explicitly set the Dock tile icon; the Dock's LaunchServices-based icon
 // lookup can serve a stale/generic icon after the bundle's icon changes.
 if let iconURL = Bundle.main.url(forResource: "AppIcon", withExtension: "icns"),
@@ -137,6 +244,12 @@ let delegate = AppDelegate()
 if args.count >= 4, args[1] == "--render-preview" {
     delegate.previewArgs = (path: args[2], query: args[3])
 }
+if args.count >= 3, args[1] == "--render-settings" {
+    delegate.settingsPreview = (path: args[2], welcome: args.contains("welcome"))
+}
 if args.contains("--selftest-keys") { delegate.selfTest = true }
+if let i = args.firstIndex(of: "--selftest-generate") {
+    delegate.generateSelfTest = args.count > i + 1 ? args[i + 1] : ""
+}
 app.delegate = delegate
 app.run()

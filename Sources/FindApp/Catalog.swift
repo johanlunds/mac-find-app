@@ -16,6 +16,30 @@ struct Catalog: Codable {
 }
 
 enum CatalogLoader {
+    /// The live, writable catalog location. In-app generation saves here;
+    /// the repo's Resources/catalog.json is only a seed.
+    static var appSupportURL: URL {
+        FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+            .appendingPathComponent("FindApp/catalog.json")
+    }
+
+    /// Saves to Application Support, first backing up the existing file to
+    /// catalog.json.bak (replaced on every save).
+    static func save(_ catalog: Catalog) throws {
+        let url = appSupportURL
+        let fm = FileManager.default
+        try fm.createDirectory(at: url.deletingLastPathComponent(),
+                               withIntermediateDirectories: true)
+        if fm.fileExists(atPath: url.path) {
+            let backup = url.appendingPathExtension("bak")
+            try? fm.removeItem(at: backup)
+            try fm.copyItem(at: url, to: backup)
+        }
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.prettyPrinted, .sortedKeys, .withoutEscapingSlashes]
+        try encoder.encode(catalog).write(to: url)
+    }
+
     /// Search order: $FINDAPP_CATALOG, ~/Library/Application Support/FindApp/catalog.json,
     /// next to the executable / in the .app's Resources, then the repo's
     /// Resources/catalog.json (or a bare catalog.json) in the current directory.

@@ -47,9 +47,5 @@ PLIST
 
 codesign --force --sign - "$APP" 2>/dev/null || true
 
-# Install catalog to Application Support so `swift run` builds find it too.
-mkdir -p "$HOME/Library/Application Support/FindApp"
-cp Resources/catalog.json "$HOME/Library/Application Support/FindApp/catalog.json"
-
 echo "Built $APP"
 echo "Install with: cp -R \"$APP\" /Applications/"

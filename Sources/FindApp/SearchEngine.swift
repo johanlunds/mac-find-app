@@ -15,16 +15,6 @@ struct SearchResult: Identifiable, Equatable {
 /// (Apple NaturalLanguage word + sentence embeddings). Rescans /Applications on
 /// every search so removed apps never appear and new apps still match by name.
 final class SearchEngine {
-    static let applicationsDir = URL(fileURLWithPath: "/Applications")
-    static let userApplicationsDir = FileManager.default
-        .homeDirectoryForCurrentUser.appendingPathComponent("Applications")
-    /// Apple's built-in apps live here (Finder shows Utilities merged into
-    /// /Applications, but on disk it's under /System).
-    static let systemRoots = [
-        URL(fileURLWithPath: "/System/Applications"),
-        URL(fileURLWithPath: "/System/Applications/Utilities"),
-    ]
-
     private struct IndexedApp {
         let file: String
         let name: String
@@ -47,6 +37,12 @@ final class SearchEngine {
     ]
 
     init(catalog: Catalog) {
+        reload(catalog: catalog)
+    }
+
+    /// Rebuilds the index from a new catalog (e.g. after in-app regeneration).
+    func reload(catalog: Catalog) {
+        index.removeAll()
         for entry in catalog.apps {
             add(entry: entry)
         }
@@ -78,8 +74,8 @@ final class SearchEngine {
 
     /// Minimal entry for an installed app that isn't in the catalog yet.
     private func addUncataloged(file: String) {
-        let name = ((file as NSString).lastPathComponent as NSString).deletingPathExtension
-        add(entry: CatalogEntry(file: file, name: name, bundleId: nil,
+        add(entry: CatalogEntry(file: file, name: AppScanner.displayName(forFileKey: file),
+                                bundleId: nil,
                                 description: "", keywords: []))
     }
 
@@ -108,53 +104,11 @@ final class SearchEngine {
         return denom > 0 ? dot / denom : 0
     }
 
-    /// Currently installed apps, keyed the same way as the catalog's `file`
-    /// field: bare/relative under /Applications ("Thaw.app", "ISTP/ISTP.app"),
-    /// "~/Applications/..." for user apps, or an absolute path for system apps
-    /// ("/System/Applications/Notes.app"). Scans /Applications and
-    /// ~/Applications one level deep, plus the Apple system app folders.
-    private func installedApps() -> [String: URL] {
-        var found: [String: URL] = [:]
-
-        scanTwoLevels(Self.applicationsDir, into: &found) { $0 }
-        scanTwoLevels(Self.userApplicationsDir, into: &found) { "~/Applications/\($0)" }
-
-        for root in Self.systemRoots {
-            let sub = (try? FileManager.default.contentsOfDirectory(
-                at: root, includingPropertiesForKeys: nil, options: [.skipsHiddenFiles])) ?? []
-            for s in sub where s.pathExtension == "app" {
-                found[s.path] = s
-            }
-        }
-        return found
-    }
-
-    /// Adds .app bundles directly in `root` and in its immediate subfolders.
-    /// `key` maps a path relative to `root` to the catalog's `file` value.
-    private func scanTwoLevels(_ root: URL, into found: inout [String: URL],
-                               key: (String) -> String) {
-        let fm = FileManager.default
-        let top = (try? fm.contentsOfDirectory(
-            at: root, includingPropertiesForKeys: [.isDirectoryKey],
-            options: [.skipsHiddenFiles])) ?? []
-        for url in top {
-            if url.pathExtension == "app" {
-                found[key(url.lastPathComponent)] = url
-            } else if (try? url.resourceValues(forKeys: [.isDirectoryKey]).isDirectory) == true {
-                let sub = (try? fm.contentsOfDirectory(
-                    at: url, includingPropertiesForKeys: nil, options: [.skipsHiddenFiles])) ?? []
-                for s in sub where s.pathExtension == "app" {
-                    found[key("\(url.lastPathComponent)/\(s.lastPathComponent)")] = s
-                }
-            }
-        }
-    }
-
     func search(_ rawQuery: String, limit: Int = 8) -> [SearchResult] {
         let query = rawQuery.trimmingCharacters(in: .whitespacesAndNewlines).lowercased()
         guard !query.isEmpty else { return [] }
 
-        let installed = installedApps()
+        let installed = AppScanner.installedApps()
         for file in installed.keys where index[file] == nil {
             addUncataloged(file: file)
         }
