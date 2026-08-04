@@ -1,4 +1,4 @@
-# Find App
+# <img src="docs/icon.png" width="32" align="center" alt=""> Find App
 
 A Spotlight/Raycast/Alfred-style launcher for macOS that finds apps by **what
 they do**, not what they're called.
