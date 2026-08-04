@@ -1,5 +1,7 @@
 # <img src="docs/icon.png" width="32" align="center" alt=""> Find App
 
+[Download latest release here.](https://github.com/johanlunds/mac-find-app/releases)
+
 A Spotlight/Raycast/Alfred-style launcher for macOS that finds apps by **what
 they do**, not what they're called.
 
@@ -21,7 +23,7 @@ a while.
 
 ## Screenshots
 
-<img src="docs/screenshots/search-menubar.png" width="40%" alt="Searching for &quot;menubar&quot;"> <img src="docs/screenshots/search-database.png" width="40%" alt="Searching for &quot;database&quot;"> <img src="docs/screenshots/search-photoshop.png" width="40%" alt="Searching for &quot;photoshop&quot; finds Pixelmator Pro"> <img src="docs/screenshots/settings-catalog.png" width="40%" alt="Settings window analyzing the app catalog"> <img src="docs/screenshots/welcome.png" width="40%" alt="Welcome screen">
+<img src="docs/screenshots/search-menubar.png" width="40%" alt="Searching for &quot;menubar&quot;"> <img src="docs/screenshots/search-database.png" width="40%" alt="Searching for &quot;database&quot;"> <img src="docs/screenshots/settings-catalog.png" width="40%" alt="Settings window analyzing the app catalog"> <img src="docs/screenshots/welcome.png" width="40%" alt="Welcome screen">
 
 ## How it works
 
@@ -49,7 +51,7 @@ a while.
 
 ## How to install and use
 
-- **Download:**
+- **Download:** [Latest version on Releases page.](https://github.com/johanlunds/mac-find-app/releases)
 - The search field is focused automatically when the app opens/activates.
 - **↑/↓** select, **Enter** launches, **Esc** hides, **⌘Q** quits.
 - Reopening the app (from Dock/Spotlight/Raycast) brings the panel back.
