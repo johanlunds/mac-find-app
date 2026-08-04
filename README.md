@@ -24,23 +24,23 @@ a while.
 Searching by category instead of by name — "menubar" surfaces Thaw and the
 rest of the utilities I can never name:
 
-![Searching for "menubar"](docs/screenshots/search-menubar.png)
+<img src="docs/screenshots/search-menubar.png" width="30%" alt="Searching for &quot;menubar&quot;">
 
 The "database GUIs" problem, solved:
 
-![Searching for "database"](docs/screenshots/search-database.png)
+<img src="docs/screenshots/search-database.png" width="30%" alt="Searching for &quot;database&quot;">
 
 And the app I don't even own, found by the name I actually remember:
 
-![Searching for "photoshop" finds Pixelmator Pro](docs/screenshots/search-photoshop.png)
+<img src="docs/screenshots/search-photoshop.png" width="30%" alt="Searching for &quot;photoshop&quot; finds Pixelmator Pro">
 
 The catalog in Settings, mid-analysis:
 
-![Settings window analyzing the app catalog](docs/screenshots/settings-catalog.png)
+<img src="docs/screenshots/settings-catalog.png" width="30%" alt="Settings window analyzing the app catalog">
 
 First launch:
 
-![Welcome screen](docs/screenshots/welcome.png)
+<img src="docs/screenshots/welcome.png" width="30%" alt="Welcome screen">
 
 ## How it works
 
