@@ -3,21 +3,21 @@
 A Spotlight/Raycast/Alfred-style launcher for macOS that finds apps by **what
 they do**, not what they're called.
 
-I commonly forget the names of apps. Pixelmator I remember as the "Photoshop
-clone", Thaw I don't remember at all (but it is a "menubar utility"). I also
-have a bunch of "database GUIs" but I never remember which. Rancher Desktop I
-forget, I can only remember it as the "Docker app".
+I commonly forget the names of apps. [Pixelmator](https://www.apple.com/pixelmator-pro/) I remember as the **"Photoshop
+clone"**, [Thaw](https://github.com/thaw-app/Thaw) I don't remember at all (but it is a **"menubar utility"**). I also
+have a bunch of **"database GUIs"** but I never remember which. [Rancher Desktop](https://rancherdesktop.io/) I
+forget, I can only remember it as the **"Docker app"**.
 
-So I made a Spotlight clone that indexes my Mac apps with Claude. I of course
-gave it a stupidly obvious name: "Find App". :slightly_smiling_face: I still use
-Spotlight/Raycast, this app is not a replacement, but it comes in handy once in
+So I made a Spotlight clone that indexes my Mac apps with Claude CLI. I of course
+gave it a stupidly obvious name: **Find App**. 😊 I still use
+Spotlight/Raycast, this app is not a replacement, but my app comes in handy once in
 a while.
 
 > **Note:** I have not given the app a global shortcut, at least not yet,
 > because I don't use it as a replacement for Spotlight/Raycast. I launch it
 > manually, find the app and then quit it (because I use it maybe a couple of
-> times per week). I might add it in the future as well as the option of having
-> the app as a menubar app instead of an in the Dock.
+> times per week). I might add it in the future, as well as the option of having
+> the app as a menubar app instead of in the Dock.
 
 ## Screenshots
 
