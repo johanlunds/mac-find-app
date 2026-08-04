@@ -1,1262 +1,256 @@
 {
-  "generated": "2026-07-28",
+  "generated": "2026-08-04",
   "apps": [
     {
-      "file": "1Password.app",
-      "name": "1Password",
-      "bundleId": "com.1password.1password",
-      "description": "Password manager and secure vault for logins, passkeys, credit cards, 2FA codes and secrets, with browser autofill.",
-      "keywords": ["password manager", "passwords", "vault", "secrets", "credentials", "login", "autofill", "security", "2fa", "otp", "passkeys", "ssh keys"]
-    },
-    {
-      "file": "Agentty.app",
-      "name": "Agentty",
-      "bundleId": "com.mitchellh.ghostty",
-      "description": "A Ghostty-based terminal emulator build, set up for running AI coding agents in the terminal.",
-      "keywords": ["terminal", "terminal emulator", "ghostty", "shell", "command line", "cli", "ai agents", "coding agents", "console"]
-    },
-    {
-      "file": "Air.app",
-      "name": "Air",
-      "bundleId": "com.jetbrains.air",
-      "description": "JetBrains Air, an agentic development environment for delegating coding tasks to parallel AI agents (Claude, Codex, Gemini, Junie) with IDE-style code review.",
-      "keywords": ["jetbrains", "ai coding", "agentic ide", "coding agents", "parallel agents", "code review", "developer tool", "ide", "agent orchestration"]
-    },
-    {
-      "file": "Alfred 5.app",
-      "name": "Alfred 5",
-      "bundleId": "com.runningwithcrayons.Alfred",
-      "description": "Keyboard-driven launcher and productivity tool: launch apps, search files, clipboard history, snippets and custom workflows.",
-      "keywords": ["launcher", "spotlight alternative", "productivity", "hotkey", "workflows", "clipboard history", "snippets", "quick open", "search"]
-    },
-    {
-      "file": "Android File Transfer.app",
-      "name": "Android File Transfer",
-      "bundleId": "com.google.android.mtpviewer",
-      "description": "Google utility for browsing and transferring files to and from an Android phone over USB (MTP).",
-      "keywords": ["android", "file transfer", "usb", "mtp", "phone", "google", "copy files", "device"]
-    },
-    {
-      "file": "Android Studio.app",
-      "name": "Android Studio",
-      "bundleId": "com.google.android.studio",
-      "description": "Google's official IDE for Android app development with Kotlin and Java, including emulator, Gradle builds and layout tools.",
-      "keywords": ["android", "ide", "kotlin", "java", "emulator", "gradle", "mobile development", "app development", "jetbrains", "google"]
-    },
-    {
-      "file": "Android Studio Preview.app",
-      "name": "Android Studio Preview",
-      "bundleId": "com.google.android.studio",
-      "description": "Preview (canary/beta) build of Android Studio, Google's IDE for Android development.",
-      "keywords": ["android", "ide", "kotlin", "java", "emulator", "canary", "beta", "preview", "mobile development"]
-    },
-    {
-      "file": "Android Studio Release Candidate.app",
-      "name": "Android Studio Release Candidate",
-      "bundleId": "com.google.android.studio",
-      "description": "Release-candidate build of Android Studio, Google's IDE for Android development.",
-      "keywords": ["android", "ide", "kotlin", "java", "emulator", "release candidate", "mobile development"]
-    },
-    {
-      "file": "Antigravity.app",
-      "name": "Antigravity",
-      "bundleId": "com.google.antigravity",
-      "description": "Google's agentic AI coding IDE powered by Gemini, where autonomous agents plan and execute development tasks.",
-      "keywords": ["google", "ai coding", "agentic ide", "gemini", "coding agents", "editor", "developer tool", "vs code fork"]
-    },
-    {
-      "file": "Antigravity IDE.app",
-      "name": "Antigravity IDE",
-      "bundleId": "com.google.antigravity-ide",
-      "description": "Google Antigravity IDE, the agentic AI coding editor powered by Gemini agents.",
-      "keywords": ["google", "ai coding", "agentic ide", "gemini", "coding agents", "editor", "developer tool"]
-    },
-    {
-      "file": "Arc.app",
-      "name": "Arc",
-      "bundleId": "company.thebrowser.Browser",
-      "description": "Chromium-based web browser by The Browser Company with sidebar tabs, spaces, profiles and a redesigned browsing UI.",
-      "keywords": ["browser", "web browser", "chromium", "sidebar tabs", "spaces", "internet", "the browser company"]
-    },
-    {
-      "file": "Audacity.app",
-      "name": "Audacity",
-      "bundleId": "org.audacityteam.audacity",
-      "description": "Free open-source audio editor and recorder for multi-track editing, podcasts, trimming, effects and format conversion.",
-      "keywords": ["audio editor", "audio recording", "sound", "podcast", "waveform", "music editing", "mp3", "wav", "open source", "microphone"]
-    },
-    {
-      "file": "Base.app",
-      "name": "Base",
-      "bundleId": "uk.co.menial.Base3",
-      "description": "Native macOS GUI for creating, browsing and editing SQLite databases, by Menial.",
-      "keywords": ["sqlite", "database", "db browser", "sql", "database editor", "tables", "queries", "developer tool"]
-    },
-    {
-      "file": "ChatGPT.app",
-      "name": "ChatGPT",
-      "bundleId": "com.openai.chat",
-      "description": "OpenAI's ChatGPT desktop app: AI chatbot assistant for questions, writing, coding help and image generation.",
-      "keywords": ["ai", "chatbot", "assistant", "openai", "gpt", "llm", "chat", "writing", "questions"]
-    },
-    {
-      "file": "ChatGPT Atlas.app",
-      "name": "ChatGPT Atlas",
-      "bundleId": "com.openai.atlas",
-      "description": "OpenAI's AI-powered web browser with ChatGPT built in, including agent mode that can browse and act for you.",
-      "keywords": ["browser", "ai browser", "openai", "chatgpt", "agent", "web browsing", "assistant"]
-    },
-    {
-      "file": "Claude.app",
-      "name": "Claude",
-      "bundleId": "com.anthropic.claudefordesktop",
-      "description": "Anthropic's Claude desktop app: AI assistant for chat, writing, analysis and coding, with MCP connector support.",
-      "keywords": ["ai", "assistant", "chatbot", "anthropic", "llm", "chat", "claude code", "mcp", "writing", "coding help"]
-    },
-    {
-      "file": "CleanShot X.app",
-      "name": "CleanShot X",
-      "bundleId": "pl.maketheweb.cleanshotx",
-      "description": "Screenshot and screen recording tool with annotation, scrolling capture, OCR text extraction, GIF recording and a menu bar overlay.",
-      "keywords": ["screenshot", "screen capture", "screen recording", "annotate", "ocr", "gif", "scrolling capture", "menubar", "utility"]
-    },
-    {
-      "file": "CoScreen.app",
-      "name": "CoScreen",
-      "bundleId": "org.coscreen.CoScreen",
-      "description": "Collaborative screen sharing by Datadog where multiple people can share windows and control each other's screens simultaneously; good for pair programming.",
-      "keywords": ["screen sharing", "collaboration", "pair programming", "remote work", "datadog", "meetings", "remote control"]
-    },
-    {
-      "file": "Codex.app",
-      "name": "Codex",
-      "bundleId": "com.openai.codex",
-      "description": "OpenAI Codex desktop app for running and supervising AI coding agents on your projects.",
-      "keywords": ["openai", "ai coding", "coding agent", "developer tool", "autonomous coding", "code generation"]
-    },
-    {
-      "file": "Comet.app",
-      "name": "Comet",
-      "bundleId": "ai.perplexity.comet",
-      "description": "Perplexity's AI-powered web browser with a built-in assistant that can search, summarize and act across tabs.",
-      "keywords": ["browser", "ai browser", "perplexity", "web browsing", "assistant", "search"]
-    },
-    {
-      "file": "CrossOver.app",
-      "name": "CrossOver",
-      "bundleId": "com.codeweavers.CrossOver",
-      "description": "Runs Windows applications and games on macOS without a Windows license, built on Wine by CodeWeavers.",
-      "keywords": ["windows apps", "wine", "compatibility", "run windows software", "games", "emulation", "codeweavers"]
-    },
-    {
-      "file": "Cursor.app",
-      "name": "Cursor",
-      "bundleId": "com.todesktop.230313mzl4w4u92",
-      "description": "AI-first code editor (VS Code fork) by Anysphere with built-in AI chat, autocomplete and agentic editing.",
-      "keywords": ["ai coding", "code editor", "ide", "vs code fork", "copilot", "ai autocomplete", "developer tool", "anysphere"]
-    },
-    {
-      "file": "Cyberduck.app",
-      "name": "Cyberduck",
-      "bundleId": "ch.sudo.cyberduck",
-      "description": "File transfer client for FTP, SFTP, WebDAV and cloud storage like S3, Azure, Google Cloud and Backblaze.",
-      "keywords": ["ftp", "sftp", "file transfer", "s3", "cloud storage", "webdav", "upload", "download", "remote files"]
-    },
-    {
-      "file": "DB Browser for SQLite.app",
-      "name": "DB Browser for SQLite",
-      "bundleId": "net.sourceforge.sqlitebrowser",
-      "description": "Open-source visual tool to create, design and edit SQLite database files, browse tables and run SQL queries.",
-      "keywords": ["sqlite", "database", "sql", "db browser", "tables", "queries", "open source", "developer tool"]
-    },
-    {
-      "file": "Dash.app",
-      "name": "Dash",
-      "bundleId": "com.kapeli.dashdoc",
-      "description": "Offline API documentation browser with 200+ docsets and code snippet manager for developers.",
-      "keywords": ["documentation", "api docs", "docsets", "offline docs", "snippets", "reference", "developer tool", "search docs"]
-    },
-    {
-      "file": "Deckset.app",
-      "name": "Deckset",
-      "bundleId": "com.unsignedinteger.Deckset-Paddle",
-      "description": "Turns simple Markdown files into styled presentation slide decks.",
-      "keywords": ["presentations", "slides", "markdown", "slide deck", "talks", "speaker", "keynote alternative"]
-    },
-    {
-      "file": "DevUtils.app",
-      "name": "DevUtils",
-      "bundleId": "tonyapp.devutils",
-      "description": "Offline toolbox of small developer utilities: JSON formatter, base64, URL encode/decode, JWT debugger, regex tester, timestamp converter and more.",
-      "keywords": ["developer utilities", "json formatter", "base64", "url decode", "jwt", "regex tester", "unix timestamp", "toolbox", "offline", "converters"]
-    },
-    {
-      "file": "Developer.app",
-      "name": "Developer",
-      "bundleId": "developer.apple.wwdc-Release",
-      "description": "Apple Developer app for watching WWDC session videos, reading news and browsing Apple developer resources.",
-      "keywords": ["apple", "wwdc", "developer", "sessions", "videos", "swift", "documentation", "news"]
-    },
-    {
-      "file": "Discord.app",
-      "name": "Discord",
-      "bundleId": "com.hnc.Discord",
-      "description": "Chat app for communities and friends with text channels, voice rooms, video calls and screen sharing; popular for gaming.",
-      "keywords": ["chat", "voice chat", "communities", "gaming", "messaging", "servers", "video call", "screen share"]
-    },
-    {
-      "file": "Dropbox.app",
-      "name": "Dropbox",
-      "bundleId": "com.getdropbox.dropbox",
-      "description": "Cloud storage service that syncs files and folders across devices and makes sharing links easy.",
-      "keywords": ["cloud storage", "file sync", "backup", "sharing", "folders", "sync"]
+      "file": "VLC.app",
+      "name": "VLC",
+      "bundleId": "org.videolan.vlc",
+      "description": "Free open-source media player that plays almost any video or audio format, plus streams and DVDs.",
+      "keywords": [
+        "video player",
+        "media player",
+        "movies",
+        "audio",
+        "streaming",
+        "open source",
+        "mkv",
+        "codecs"
+      ]
     },
     {
       "file": "Figma.app",
       "name": "Figma",
       "bundleId": "com.figma.Desktop",
       "description": "Collaborative interface design tool for UI/UX design, vector graphics, prototyping and design systems.",
-      "keywords": ["design", "ui design", "ux", "prototyping", "vector", "collaboration", "mockups", "design system", "wireframes"]
-    },
-    {
-      "file": "FileZilla.app",
-      "name": "FileZilla",
-      "bundleId": "org.filezilla-project.filezilla",
-      "description": "Free open-source FTP, FTPS and SFTP client for transferring files to servers.",
-      "keywords": ["ftp", "sftp", "file transfer", "server", "upload", "download", "open source"]
-    },
-    {
-      "file": "Firefox.app",
-      "name": "Firefox",
-      "bundleId": "org.mozilla.firefox",
-      "description": "Mozilla's free open-source web browser focused on privacy and customization.",
-      "keywords": ["browser", "web browser", "mozilla", "internet", "privacy", "open source"]
-    },
-    {
-      "file": "Fork.app",
-      "name": "Fork",
-      "bundleId": "com.DanPristupov.Fork",
-      "description": "Fast and friendly Git client with visual commit history, staging, merge conflict resolution and interactive rebase.",
-      "keywords": ["git", "git client", "version control", "commits", "branches", "merge", "rebase", "repository", "diff", "source control"]
-    },
-    {
-      "file": "GPG Keychain.app",
-      "name": "GPG Keychain",
-      "bundleId": "org.gpgtools.gpgkeychain",
-      "description": "GPG Suite tool for creating and managing OpenPGP keys used to encrypt and sign email and files.",
-      "keywords": ["gpg", "pgp", "encryption", "keys", "signing", "email encryption", "security", "openpgp"]
-    },
-    {
-      "file": "GarageBand.app",
-      "name": "GarageBand",
-      "bundleId": "com.apple.garageband10",
-      "description": "Apple's music creation studio with software instruments, loops, drummer tracks and multi-track recording.",
-      "keywords": ["music", "recording", "instruments", "audio", "daw", "apple", "loops", "podcast", "guitar", "piano"]
-    },
-    {
-      "file": "Gemini.app",
-      "name": "Gemini",
-      "bundleId": "com.google.GeminiMacOS",
-      "description": "Google Gemini desktop app: AI assistant for chat, research, writing and coding help.",
-      "keywords": ["ai", "assistant", "chatbot", "google", "llm", "chat", "writing", "questions"]
-    },
-    {
-      "file": "Ghostty.app",
-      "name": "Ghostty",
-      "bundleId": "com.mitchellh.ghostty",
-      "description": "Fast, GPU-accelerated, native terminal emulator by Mitchell Hashimoto, written in Zig.",
-      "keywords": ["terminal", "terminal emulator", "shell", "command line", "cli", "gpu", "console", "zig"]
-    },
-    {
-      "file": "Google Chrome.app",
-      "name": "Google Chrome",
-      "bundleId": "com.google.Chrome",
-      "description": "Google's web browser with sync, extensions and developer tools.",
-      "keywords": ["browser", "web browser", "google", "internet", "chromium", "extensions"]
-    },
-    {
-      "file": "Google Docs.app",
-      "name": "Google Docs",
-      "bundleId": "com.google.drivefs.shortcuts.docs",
-      "description": "Shortcut to Google Docs, the collaborative online word processor for writing documents.",
-      "keywords": ["documents", "word processor", "writing", "google", "collaboration", "text", "office"]
-    },
-    {
-      "file": "Google Drive.app",
-      "name": "Google Drive",
-      "bundleId": "com.google.drivefs",
-      "description": "Google's cloud storage client that syncs Drive files to your Mac and streams files on demand.",
-      "keywords": ["cloud storage", "file sync", "google", "backup", "sharing", "drive"]
-    },
-    {
-      "file": "Google Sheets.app",
-      "name": "Google Sheets",
-      "bundleId": "com.google.drivefs.shortcuts.sheets",
-      "description": "Shortcut to Google Sheets, the collaborative online spreadsheet editor.",
-      "keywords": ["spreadsheet", "google", "collaboration", "tables", "formulas", "office", "excel alternative"]
-    },
-    {
-      "file": "Google Slides.app",
-      "name": "Google Slides",
-      "bundleId": "com.google.drivefs.shortcuts.slides",
-      "description": "Shortcut to Google Slides, the collaborative online presentation editor.",
-      "keywords": ["presentations", "slides", "google", "collaboration", "slideshow", "office", "powerpoint alternative"]
-    },
-    {
-      "file": "Headset.app",
-      "name": "Headset",
-      "bundleId": "co.headsetapp.app",
-      "description": "Lightweight music player that plays music from YouTube, with playlists and discovery.",
-      "keywords": ["music", "music player", "youtube", "streaming", "playlists", "audio"]
-    },
-    {
-      "file": "Hex Fiend.app",
-      "name": "Hex Fiend",
-      "bundleId": "com.ridiculousfish.HexFiend",
-      "description": "Fast open-source hex editor for viewing and editing binary files, even huge ones, with binary diffing.",
-      "keywords": ["hex editor", "binary", "bytes", "file editor", "diff", "reverse engineering", "open source"]
-    },
-    {
-      "file": "Inkscape.app",
-      "name": "Inkscape",
-      "bundleId": "org.inkscape.Inkscape",
-      "description": "Free open-source vector graphics editor for SVG illustrations, logos and diagrams; an Illustrator alternative.",
-      "keywords": ["vector graphics", "svg", "illustration", "drawing", "design", "logo", "open source", "illustrator alternative"]
-    },
-    {
-      "file": "IntelliJ IDEA.app",
-      "name": "IntelliJ IDEA",
-      "bundleId": "com.jetbrains.intellij",
-      "description": "JetBrains' flagship IDE for Java, Kotlin and JVM development with powerful refactoring and debugging (Ultimate edition).",
-      "keywords": ["ide", "java", "kotlin", "jetbrains", "jvm", "refactoring", "debugging", "developer tool", "spring"]
-    },
-    {
-      "file": "IntelliJ IDEA CE.app",
-      "name": "IntelliJ IDEA CE",
-      "bundleId": "com.jetbrains.intellij",
-      "description": "Free Community Edition of JetBrains IntelliJ IDEA for Java and Kotlin development.",
-      "keywords": ["ide", "java", "kotlin", "jetbrains", "jvm", "community edition", "free", "developer tool"]
-    },
-    {
-      "file": "JD-GUI.app",
-      "name": "JD-GUI",
-      "bundleId": "jd.jd-gui",
-      "description": "Java decompiler GUI for browsing the source code of .class and .jar files.",
-      "keywords": ["java", "decompiler", "jar", "class files", "reverse engineering", "bytecode", "developer tool"]
-    },
-    {
-      "file": "KeepingYouAwake.app",
-      "name": "KeepingYouAwake",
-      "bundleId": "info.marcel-dierkes.KeepingYouAwake",
-      "description": "Menu bar utility that prevents your Mac from going to sleep (a caffeinate/Caffeine alternative).",
-      "keywords": ["menubar", "utility", "prevent sleep", "caffeine", "caffeinate", "awake", "display sleep", "menu bar app"]
-    },
-    {
-      "file": "Keka.app",
-      "name": "Keka",
-      "bundleId": "com.aone.keka",
-      "description": "File archiver and extractor supporting 7z, zip, rar, tar, gzip and more, with password-protected archives.",
-      "keywords": ["archive", "compression", "unzip", "extract", "zip", "7z", "rar", "tar", "compress", "utility"]
-    },
-    {
-      "file": "Keynote Creator Studio.app",
-      "name": "Keynote Creator Studio",
-      "bundleId": "com.apple.Keynote",
-      "description": "Apple Keynote, the presentation app for building beautiful slide decks with animations and transitions.",
-      "keywords": ["presentations", "slides", "apple", "slideshow", "iwork", "slide deck", "talks"]
-    },
-    {
-      "file": "Linear.app",
-      "name": "Linear",
-      "bundleId": "com.linear",
-      "description": "Fast project management and issue tracking tool for software teams: sprints, roadmaps and bug tracking.",
-      "keywords": ["issue tracking", "project management", "tasks", "sprints", "roadmap", "bugs", "tickets", "team", "agile"]
-    },
-    {
-      "file": "LocalSend.app",
-      "name": "LocalSend",
-      "bundleId": "org.localsend.localsendApp",
-      "description": "Open-source AirDrop alternative for sharing files between devices (including Windows, Android, Linux) over the local network.",
-      "keywords": ["file sharing", "airdrop alternative", "local network", "transfer", "cross platform", "open source", "send files"]
-    },
-    {
-      "file": "Mac Mouse Fix.app",
-      "name": "Mac Mouse Fix",
-      "bundleId": "com.nuebling.mac-mouse-fix",
-      "description": "Utility that makes third-party mice work better: smooth scrolling, gestures and remappable buttons.",
-      "keywords": ["mouse", "utility", "smooth scrolling", "buttons", "gestures", "input device", "scroll", "remap"]
-    },
-    {
-      "file": "Mailplane.app",
-      "name": "Mailplane",
-      "bundleId": "com.mailplaneapp.Mailplane3",
-      "description": "Gmail wrapper app that puts Gmail and Google Calendar in a native Mac window with multiple accounts.",
-      "keywords": ["email", "gmail", "mail client", "google calendar", "inbox", "accounts"]
-    },
-    {
-      "file": "MeetingBar.app",
-      "name": "MeetingBar",
-      "bundleId": "leits.MeetingBar",
-      "description": "Menu bar app that shows your next calendar meeting and lets you join Zoom/Meet/Teams calls with one click.",
-      "keywords": ["menubar", "meetings", "calendar", "zoom", "google meet", "join meeting", "utility", "menu bar app", "schedule"]
-    },
-    {
-      "file": "Microsoft Excel.app",
-      "name": "Microsoft Excel",
-      "bundleId": "com.microsoft.Excel",
-      "description": "Microsoft's spreadsheet app for data analysis, formulas, charts and pivot tables.",
-      "keywords": ["spreadsheet", "microsoft", "office", "formulas", "charts", "pivot tables", "data", "xlsx"]
-    },
-    {
-      "file": "Microsoft OneNote.app",
-      "name": "Microsoft OneNote",
-      "bundleId": "com.microsoft.onenote.mac",
-      "description": "Microsoft's free-form note-taking app with notebooks, sections and sync across devices.",
-      "keywords": ["notes", "notebook", "microsoft", "office", "note taking", "sync"]
-    },
-    {
-      "file": "Microsoft Outlook.app",
-      "name": "Microsoft Outlook",
-      "bundleId": "com.microsoft.Outlook",
-      "description": "Microsoft's email and calendar client for Exchange, Microsoft 365 and other accounts.",
-      "keywords": ["email", "calendar", "microsoft", "office", "exchange", "mail client", "contacts", "inbox"]
-    },
-    {
-      "file": "Microsoft PowerPoint.app",
-      "name": "Microsoft PowerPoint",
-      "bundleId": "com.microsoft.Powerpoint",
-      "description": "Microsoft's presentation app for creating slide decks.",
-      "keywords": ["presentations", "slides", "microsoft", "office", "slideshow", "slide deck"]
-    },
-    {
-      "file": "Microsoft Teams.app",
-      "name": "Microsoft Teams",
-      "bundleId": "com.microsoft.teams2",
-      "description": "Microsoft's team chat, video meetings and collaboration platform.",
-      "keywords": ["chat", "video call", "meetings", "microsoft", "collaboration", "team", "conference"]
-    },
-    {
-      "file": "Microsoft Word.app",
-      "name": "Microsoft Word",
-      "bundleId": "com.microsoft.Word",
-      "description": "Microsoft's word processor for writing and formatting documents.",
-      "keywords": ["documents", "word processor", "microsoft", "office", "writing", "text", "docx"]
-    },
-    {
-      "file": "Mimestream.app",
-      "name": "Mimestream",
-      "bundleId": "com.mimestream.Mimestream",
-      "description": "Fast native macOS email client built specifically for Gmail, by a former Apple Mail engineer.",
-      "keywords": ["email", "gmail", "mail client", "inbox", "native", "labels"]
-    },
-    {
-      "file": "MonitorControl.app",
-      "name": "MonitorControl",
-      "bundleId": "me.guillaumeb.MonitorControl",
-      "description": "Menu bar utility to control external monitor brightness and volume with native-feeling keys and sliders (DDC).",
-      "keywords": ["menubar", "monitor", "external display", "brightness", "volume", "ddc", "utility", "screen", "menu bar app"]
-    },
-    {
-      "file": "Moom.app",
-      "name": "Moom",
-      "bundleId": "com.manytricks.Moom",
-      "description": "Window manager for moving and zooming windows into grids, halves and saved layouts with keyboard shortcuts.",
-      "keywords": ["window management", "window manager", "layouts", "tiling", "resize windows", "utility", "keyboard shortcuts", "snap"]
-    },
-    {
-      "file": "Notion.app",
-      "name": "Notion",
-      "bundleId": "notion.id",
-      "description": "All-in-one workspace for notes, docs, wikis, databases, tasks and project management.",
-      "keywords": ["notes", "docs", "wiki", "databases", "project management", "tasks", "workspace", "knowledge base", "writing"]
-    },
-    {
-      "file": "Numbers Creator Studio.app",
-      "name": "Numbers Creator Studio",
-      "bundleId": "com.apple.Numbers",
-      "description": "Apple Numbers, the spreadsheet app with canvas-style sheets, formulas and charts.",
-      "keywords": ["spreadsheet", "apple", "iwork", "formulas", "charts", "tables", "data"]
-    },
-    {
-      "file": "OneDrive.app",
-      "name": "OneDrive",
-      "bundleId": "com.microsoft.OneDrive-mac",
-      "description": "Microsoft's cloud storage client that syncs OneDrive files to your Mac.",
-      "keywords": ["cloud storage", "file sync", "microsoft", "backup", "sharing", "office"]
-    },
-    {
-      "file": "OpenCode.app",
-      "name": "OpenCode",
-      "bundleId": "ai.opencode.desktop",
-      "description": "Desktop app for OpenCode, the open-source AI coding agent that works with many model providers.",
-      "keywords": ["ai coding", "coding agent", "open source", "developer tool", "terminal agent", "code generation"]
-    },
-    {
-      "file": "Pages Creator Studio.app",
-      "name": "Pages Creator Studio",
-      "bundleId": "com.apple.Pages",
-      "description": "Apple Pages, the word processor and page layout app for documents, letters and flyers.",
-      "keywords": ["documents", "word processor", "apple", "iwork", "writing", "text", "layout"]
-    },
-    {
-      "file": "Parallels Desktop.app",
-      "name": "Parallels Desktop",
-      "bundleId": "com.parallels.desktop.console",
-      "description": "Virtualization app for running Windows, Linux and other operating systems in virtual machines on your Mac.",
-      "keywords": ["virtual machine", "vm", "windows on mac", "virtualization", "linux", "emulation", "boot camp alternative"]
-    },
-    {
-      "file": "Pax.app",
-      "name": "Pax",
-      "bundleId": "com.bontouch.pax",
-      "description": "Internal Bontouch/Framna desktop app.",
-      "keywords": ["bontouch", "framna", "internal", "work", "company tool"]
-    },
-    {
-      "file": "Pixelmator Pro.app",
-      "name": "Pixelmator Pro",
-      "bundleId": "com.pixelmatorteam.pixelmator.x",
-      "description": "Image editor for photo editing, retouching, drawing and design; a native Photoshop alternative.",
-      "keywords": ["image editing", "photo editor", "photos", "retouching", "design", "raster", "photoshop alternative", "graphics"]
-    },
-    {
-      "file": "Postgres.app",
-      "name": "Postgres",
-      "bundleId": "com.postgresapp.Postgres2",
-      "description": "Postgres.app runs a local PostgreSQL database server on your Mac with a simple menu bar control.",
-      "keywords": ["postgresql", "postgres", "database", "sql", "server", "local database", "developer tool", "menubar"]
-    },
-    {
-      "file": "Postico 2.app",
-      "name": "Postico 2",
-      "bundleId": "at.eggerapps.Postico",
-      "description": "Friendly native GUI client for browsing and editing PostgreSQL databases.",
-      "keywords": ["postgresql", "postgres", "database", "sql", "database client", "queries", "tables", "developer tool"]
-    },
-    {
-      "file": "Postman.app",
-      "name": "Postman",
-      "bundleId": "com.postmanlabs.mac",
-      "description": "API platform for building, testing and documenting HTTP/REST/GraphQL requests with collections and environments.",
-      "keywords": ["api", "http", "rest", "api testing", "requests", "graphql", "developer tool", "collections", "api client"]
-    },
-    {
-      "file": "Proxyman.app",
-      "name": "Proxyman",
-      "bundleId": "com.proxyman.NSProxy",
-      "description": "HTTP debugging proxy to capture, inspect and mock HTTPS traffic from apps, browsers and devices.",
-      "keywords": ["http proxy", "debugging", "network", "traffic inspection", "ssl", "charles alternative", "api debugging", "developer tool", "mitm"]
-    },
-    {
-      "file": "Rancher Desktop.app",
-      "name": "Rancher Desktop",
-      "bundleId": "io.rancherdesktop.app",
-      "description": "Container management and Kubernetes on the desktop: run containers with dockerd or containerd; a Docker Desktop alternative.",
-      "keywords": ["containers", "docker", "kubernetes", "k8s", "devops", "docker desktop alternative", "containerd", "developer tool"]
-    },
-    {
-      "file": "RapidAPI.app",
-      "name": "RapidAPI",
-      "bundleId": "com.luckymarmot.Paw",
-      "description": "Native API client (formerly Paw) for designing and testing HTTP and REST requests.",
-      "keywords": ["api", "http", "rest", "api testing", "requests", "paw", "api client", "developer tool"]
-    },
-    {
-      "file": "Raycast.app",
-      "name": "Raycast",
-      "bundleId": "com.raycast.macos",
-      "description": "Extensible keyboard launcher: launch apps, run scripts and extensions, clipboard history, snippets, window management and AI chat.",
-      "keywords": ["launcher", "spotlight alternative", "productivity", "extensions", "clipboard history", "snippets", "hotkey", "quick open", "commands"]
-    },
-    {
-      "file": "Real Keyboard Cleaner.app",
-      "name": "Real Keyboard Cleaner",
-      "bundleId": "com.dragonbtv.real-keyboard-cleaner",
-      "description": "Utility that locks your keyboard input so you can wipe and clean the keyboard without typing things.",
-      "keywords": ["keyboard", "cleaning", "lock keyboard", "utility", "disable keys"]
-    },
-    {
-      "file": "Rive.app",
-      "name": "Rive",
-      "bundleId": "app.rive.editor",
-      "description": "Editor for creating interactive real-time animations and graphics with state machines, for apps, games and websites.",
-      "keywords": ["animation", "interactive", "motion design", "state machines", "design", "vector animation", "lottie alternative"]
-    },
-    {
-      "file": "SQLiteStudio.app",
-      "name": "SQLiteStudio",
-      "bundleId": "pl.com.salsoft.SQLiteStudio",
-      "description": "Free open-source SQLite database manager for browsing tables, editing data and running SQL.",
-      "keywords": ["sqlite", "database", "sql", "database manager", "tables", "open source", "developer tool"]
-    },
-    {
-      "file": "Safari.app",
-      "name": "Safari",
-      "bundleId": "com.apple.Safari",
-      "description": "Apple's built-in web browser, fast and energy efficient with iCloud tab sync.",
-      "keywords": ["browser", "web browser", "apple", "internet", "webkit"]
-    },
-    {
-      "file": "Slack.app",
-      "name": "Slack",
-      "bundleId": "com.tinyspeck.slackmacgap",
-      "description": "Team messaging platform with channels, DMs, huddles and app integrations.",
-      "keywords": ["chat", "messaging", "team", "channels", "work", "collaboration", "huddle"]
-    },
-    {
-      "file": "Spotify.app",
-      "name": "Spotify",
-      "bundleId": "com.spotify.client",
-      "description": "Music and podcast streaming service.",
-      "keywords": ["music", "streaming", "podcasts", "playlists", "audio", "songs"]
-    },
-    {
-      "file": "Steam.app",
-      "name": "Steam",
-      "bundleId": "com.valvesoftware.steam",
-      "description": "Valve's game store and library for buying, downloading and playing games.",
-      "keywords": ["games", "gaming", "game store", "valve", "library", "play"]
-    },
-    {
-      "file": "Supertone Shift.app",
-      "name": "Supertone Shift",
-      "bundleId": "com.supertone.SupertoneShift",
-      "description": "Real-time AI voice changer that transforms your voice into different characters during calls, streams and recordings.",
-      "keywords": ["voice changer", "ai voice", "audio", "microphone", "streaming", "voice conversion", "real time"]
-    },
-    {
-      "file": "T3 Code (Alpha).app",
-      "name": "T3 Code (Alpha)",
-      "bundleId": "com.t3tools.t3code",
-      "description": "Minimal GUI for supervising AI coding agents (Codex-first), from T3 Tools / Theo.",
-      "keywords": ["ai coding", "coding agents", "codex", "developer tool", "gui", "t3", "agent manager"]
-    },
-    {
-      "file": "Tayasui Sketches.app",
-      "name": "Tayasui Sketches",
-      "bundleId": "com.tayasui.sketchesmacfree",
-      "description": "Drawing and painting app with realistic brushes, pencils and watercolor tools for sketching.",
-      "keywords": ["drawing", "sketching", "painting", "art", "brushes", "watercolor", "illustration", "creative"]
-    },
-    {
-      "file": "Thaw.app",
-      "name": "Thaw",
-      "bundleId": "com.stonerl.Thaw",
-      "description": "Menu bar manager for macOS that hides and shows menu bar icons, with an always-hidden section and drag-and-drop arrangement; a maintained fork of Ice.",
-      "keywords": ["menubar", "menu bar manager", "hide menu bar icons", "utility", "menu bar app", "ice fork", "bartender alternative", "organize menubar"]
-    },
-    {
-      "file": "TickTick.app",
-      "name": "TickTick",
-      "bundleId": "com.TickTick.task.mac",
-      "description": "To-do list and task manager with reminders, calendar view, habits and Pomodoro timer.",
-      "keywords": ["todo", "tasks", "reminders", "task manager", "calendar", "habits", "pomodoro", "productivity", "gtd"]
-    },
-    {
-      "file": "Transmission.app",
-      "name": "Transmission",
-      "bundleId": "org.m0k.transmission",
-      "description": "Lightweight open-source BitTorrent client for downloading torrents.",
-      "keywords": ["torrent", "bittorrent", "download", "p2p", "open source", "magnet links"]
-    },
-    {
-      "file": "TripMode.app",
-      "name": "TripMode",
-      "bundleId": "com.alix-sarl.TripMode",
-      "description": "Menu bar utility that blocks apps from using the internet on tethered/hotspot connections to save mobile data.",
-      "keywords": ["menubar", "data saver", "hotspot", "tethering", "firewall", "block apps", "mobile data", "utility", "network"]
-    },
-    {
-      "file": "Tuna.app",
-      "name": "Tuna",
-      "bundleId": "com.brnbw.Tuna",
-      "description": "Modern modal cmd+space launcher by Mikkel Malmberg with fuzzy app search, text actions, leader-key shortcuts and on-device dictation.",
-      "keywords": ["launcher", "spotlight alternative", "fuzzy search", "leader key", "dictation", "productivity", "quick open", "modal"]
-    },
-    {
-      "file": "Undertext Neo.app",
-      "name": "Undertext Neo",
-      "bundleId": "com.johanlunds.UndertextNeo",
-      "description": "Subtitle downloader that finds and downloads subtitles for movies and TV shows (undertext is Swedish for subtitles).",
-      "keywords": ["subtitles", "undertext", "movies", "tv shows", "download subtitles", "srt", "opensubtitles", "video"]
-    },
-    {
-      "file": "Universal Media Server.app",
-      "name": "Universal Media Server",
-      "bundleId": "net.pms.PMS",
-      "description": "DLNA/UPnP media server for streaming videos, music and photos to TVs, consoles and other devices on your network.",
-      "keywords": ["media server", "dlna", "upnp", "streaming", "tv", "video", "transcoding", "network"]
-    },
-    {
-      "file": "VLC.app",
-      "name": "VLC",
-      "bundleId": "org.videolan.vlc",
-      "description": "Free open-source media player that plays almost any video or audio format, plus streams and DVDs.",
-      "keywords": ["video player", "media player", "movies", "audio", "streaming", "open source", "mkv", "codecs"]
-    },
-    {
-      "file": "Visual Studio Code.app",
-      "name": "Visual Studio Code",
-      "bundleId": "com.microsoft.VSCode",
-      "description": "Microsoft's free extensible code editor with debugging, Git integration and a huge extension marketplace.",
-      "keywords": ["code editor", "ide", "vscode", "microsoft", "extensions", "debugging", "developer tool", "programming"]
-    },
-    {
-      "file": "Warp.app",
-      "name": "Warp",
-      "bundleId": "dev.warp.Warp-Stable",
-      "description": "Modern Rust-based terminal with AI command suggestions, blocks-based output and agent mode.",
-      "keywords": ["terminal", "terminal emulator", "ai", "shell", "command line", "cli", "rust", "agent mode", "console"]
-    },
-    {
-      "file": "Wireshark.app",
-      "name": "Wireshark",
-      "bundleId": "org.wireshark.Wireshark",
-      "description": "Network protocol analyzer for capturing and inspecting packets and network traffic.",
-      "keywords": ["network", "packet capture", "protocol analyzer", "sniffer", "traffic", "pcap", "debugging", "security"]
+      "keywords": [
+        "design",
+        "ui design",
+        "ux",
+        "prototyping",
+        "vector",
+        "collaboration",
+        "mockups",
+        "design system",
+        "wireframes"
+      ]
     },
     {
       "file": "Xcode.app",
       "name": "Xcode",
       "bundleId": "com.apple.dt.Xcode",
       "description": "Apple's IDE for building iOS, macOS, watchOS and tvOS apps with Swift, SwiftUI, Interface Builder and simulators.",
-      "keywords": ["ide", "apple", "swift", "ios development", "macos development", "simulator", "swiftui", "developer tool", "objective-c"]
+      "keywords": [
+        "ide",
+        "apple",
+        "swift",
+        "ios development",
+        "macos development",
+        "simulator",
+        "swiftui",
+        "developer tool",
+        "objective-c"
+      ]
     },
     {
-      "file": "Zed.app",
-      "name": "Zed",
-      "bundleId": "dev.zed.Zed",
-      "description": "High-performance collaborative code editor written in Rust, with AI assistance and multiplayer editing.",
-      "keywords": ["code editor", "ide", "rust", "fast", "collaboration", "ai coding", "developer tool", "multiplayer"]
+      "file": "Visual Studio Code.app",
+      "name": "Visual Studio Code",
+      "bundleId": "com.microsoft.VSCode",
+      "description": "Microsoft's free extensible code editor with debugging, Git integration and a huge extension marketplace.",
+      "keywords": [
+        "code editor",
+        "ide",
+        "vscode",
+        "microsoft",
+        "extensions",
+        "debugging",
+        "developer tool",
+        "programming"
+      ]
     },
     {
-      "file": "Zen.app",
-      "name": "Zen",
-      "bundleId": "app.zen-browser.zen",
-      "description": "Firefox-based open-source browser focused on calm, minimal browsing with workspaces, split view and vertical tabs.",
-      "keywords": ["browser", "web browser", "firefox based", "vertical tabs", "workspaces", "privacy", "open source", "minimal"]
+      "file": "Spotify.app",
+      "name": "Spotify",
+      "bundleId": "com.spotify.client",
+      "description": "Music and podcast streaming service.",
+      "keywords": [
+        "music",
+        "streaming",
+        "podcasts",
+        "playlists",
+        "audio",
+        "songs"
+      ]
     },
     {
-      "file": "cmux.app",
-      "name": "cmux",
-      "bundleId": "com.cmuxterm.app",
-      "description": "Native macOS terminal built on libghostty for running AI coding agents in parallel, with workspaces, vertical tabs and agent notification rings.",
-      "keywords": ["terminal", "ai agents", "coding agents", "parallel", "workspaces", "ghostty", "multiplexer", "claude code", "codex", "developer tool"]
+      "file": "Slack.app",
+      "name": "Slack",
+      "bundleId": "com.tinyspeck.slackmacgap",
+      "description": "Team messaging platform with channels, DMs, huddles and app integrations.",
+      "keywords": [
+        "chat",
+        "messaging",
+        "team",
+        "channels",
+        "work",
+        "collaboration",
+        "huddle"
+      ]
     },
     {
-      "file": "iMovie.app",
-      "name": "iMovie",
-      "bundleId": "com.apple.iMovieApp",
-      "description": "Apple's easy video editor for cutting clips, adding transitions, titles and music.",
-      "keywords": ["video editing", "movies", "apple", "clips", "trailers", "editing", "video"]
+      "file": "Firefox.app",
+      "name": "Firefox",
+      "bundleId": "org.mozilla.firefox",
+      "description": "Mozilla's free open-source web browser focused on privacy and customization.",
+      "keywords": [
+        "browser",
+        "web browser",
+        "mozilla",
+        "internet",
+        "privacy",
+        "open source"
+      ]
+    },
+    {
+      "file": "Thaw.app",
+      "name": "Thaw",
+      "bundleId": "com.stonerl.Thaw",
+      "description": "Menu bar manager for macOS that hides and shows menu bar icons, with an always-hidden section and drag-and-drop arrangement; a maintained fork of Ice.",
+      "keywords": [
+        "menubar",
+        "menu bar manager",
+        "hide menu bar icons",
+        "utility",
+        "menu bar app",
+        "ice fork",
+        "bartender alternative",
+        "organize menubar"
+      ]
+    },
+    {
+      "file": "Postico 2.app",
+      "name": "Postico 2",
+      "bundleId": "at.eggerapps.Postico",
+      "description": "Friendly native GUI client for browsing and editing PostgreSQL databases.",
+      "keywords": [
+        "postgresql",
+        "postgres",
+        "database",
+        "sql",
+        "database client",
+        "queries",
+        "tables",
+        "developer tool"
+      ]
+    },
+    {
+      "file": "Rancher Desktop.app",
+      "name": "Rancher Desktop",
+      "bundleId": "io.rancherdesktop.app",
+      "description": "Container management and Kubernetes on the desktop: run containers with dockerd or containerd; a Docker Desktop alternative.",
+      "keywords": [
+        "containers",
+        "docker",
+        "kubernetes",
+        "k8s",
+        "devops",
+        "docker desktop alternative",
+        "containerd",
+        "developer tool"
+      ]
+    },
+    {
+      "file": "Pixelmator Pro.app",
+      "name": "Pixelmator Pro",
+      "bundleId": "com.pixelmatorteam.pixelmator.x",
+      "description": "Image editor for photo editing, retouching, drawing and design; a native Photoshop alternative.",
+      "keywords": [
+        "image editing",
+        "photo editor",
+        "photos",
+        "retouching",
+        "design",
+        "raster",
+        "photoshop alternative",
+        "graphics"
+      ]
+    },
+    {
+      "file": "Transmission.app",
+      "name": "Transmission",
+      "bundleId": "org.m0k.transmission",
+      "description": "Lightweight open-source BitTorrent client for downloading torrents.",
+      "keywords": [
+        "torrent",
+        "bittorrent",
+        "download",
+        "p2p",
+        "open source",
+        "magnet links"
+      ]
     },
     {
       "file": "iTerm.app",
       "name": "iTerm",
       "bundleId": "com.googlecode.iterm2",
       "description": "iTerm2, the popular terminal emulator with split panes, search, profiles, hotkey window and tmux integration.",
-      "keywords": ["terminal", "terminal emulator", "shell", "command line", "cli", "split panes", "tmux", "console"]
+      "keywords": [
+        "terminal",
+        "terminal emulator",
+        "shell",
+        "command line",
+        "cli",
+        "split panes",
+        "tmux",
+        "console"
+      ]
     },
     {
-      "file": "klogg.app",
-      "name": "klogg",
-      "bundleId": "com.github.variar.klogg",
-      "description": "Fast open-source log file viewer for searching and filtering huge log files with regex (a glogg fork).",
-      "keywords": ["logs", "log viewer", "log files", "search", "regex", "filtering", "developer tool", "open source", "tail"]
-    },
-    {
-      "file": "nRF Connect for Desktop.app",
-      "name": "nRF Connect for Desktop",
-      "bundleId": "com.nordicsemi.nrfconnect",
-      "description": "Nordic Semiconductor's toolbox for Bluetooth Low Energy development, programming and testing nRF devices and firmware.",
-      "keywords": ["bluetooth", "ble", "nordic", "firmware", "embedded", "nrf", "hardware", "development", "programmer"]
-    },
-    {
-      "file": "xScope.app",
-      "name": "xScope",
-      "bundleId": "com.iconfactory.xScope",
-      "description": "Designer/developer measurement tools: on-screen rulers, pixel loupe, guides, screens and color sampling.",
-      "keywords": ["design tools", "measure", "rulers", "pixel", "loupe", "guides", "color picker", "developer tool", "ui inspection"]
-    },
-    {
-      "file": "zoom.us.app",
-      "name": "zoom.us",
-      "bundleId": "us.zoom.xos",
-      "description": "Zoom video conferencing for meetings, webinars, screen sharing and calls.",
-      "keywords": ["video call", "meetings", "conference", "webinar", "screen sharing", "calls", "remote work"]
-    },
-    {
-      "file": "ISTP/ISTP.app",
-      "name": "ISTP",
-      "description": "Java-based ISTP tool (InstallAnywhere launcher for a 'smartbrowser' application); appears to be an internal or vendor test/engineering tool.",
-      "keywords": ["istp", "java", "internal", "test tool", "smartbrowser", "work", "engineering"]
-    },
-    {
-      "file": "~/Applications/Calendar.app",
-      "name": "Calendar (web app)",
-      "bundleId": "com.apple.Safari.WebApp.14349EFC-45B4-4BA0-96ED-A9DEE0D2249A",
-      "description": "Safari web app shortcut that opens a web-based calendar (likely Google Calendar) in its own window.",
-      "keywords": ["calendar", "web app", "safari", "events", "schedule", "google calendar", "meetings", "shortcut"]
-    },
-    {
-      "file": "~/Applications/Claude Code URL Handler.app",
-      "name": "Claude Code URL Handler",
-      "bundleId": "com.anthropic.claude-code-url-handler",
-      "description": "Helper app that handles claude:// deep links so web pages can open sessions in Claude Code.",
-      "keywords": ["claude code", "anthropic", "url handler", "deep link", "helper", "protocol", "developer tool"]
-    },
-    {
-      "file": "~/Applications/Fleet.app",
-      "name": "Fleet",
-      "bundleId": "com.jetbrains.fleet",
-      "description": "JetBrains Fleet, the lightweight polyglot code editor and distributed IDE (now discontinued; succeeded by Air).",
-      "keywords": ["jetbrains", "code editor", "ide", "polyglot", "developer tool", "smart mode", "discontinued", "programming"]
-    },
-    {
-      "file": "~/Applications/Gmail.app",
-      "name": "Gmail (web app)",
-      "bundleId": "com.apple.Safari.WebApp.A0A41A88-70F8-4066-9C19-1BAE6B3920F9",
-      "description": "Safari web app shortcut that opens Gmail in its own window.",
-      "keywords": ["gmail", "email", "web app", "safari", "inbox", "google", "mail", "shortcut"]
-    },
-    {
-      "file": "~/Applications/Chrome Apps.localized/Docs.app",
-      "name": "Docs (Chrome app)",
-      "bundleId": "com.google.Chrome.app.mpnpojknpmmopombnjdcgaaiekajbnjb",
-      "description": "Chrome web app shortcut that opens Google Docs, the collaborative online word processor, in its own window.",
-      "keywords": ["google docs", "documents", "word processor", "chrome app", "web app", "writing", "collaboration", "shortcut"]
-    },
-    {
-      "file": "~/Applications/Chrome Apps.localized/Google Drive.app",
-      "name": "Google Drive (Chrome app)",
-      "bundleId": "com.google.Chrome.app.aghbiahbpaijignceidepookljebhfak",
-      "description": "Chrome web app shortcut that opens Google Drive cloud storage in its own window.",
-      "keywords": ["google drive", "cloud storage", "files", "chrome app", "web app", "sharing", "shortcut"]
-    },
-    {
-      "file": "~/Applications/Chrome Apps.localized/Google Meet.app",
-      "name": "Google Meet (Chrome app)",
-      "bundleId": "com.google.Chrome.app.kjgfgldnnfoeklkmfkjfagphfepbbdan",
-      "description": "Chrome web app shortcut for Google Meet video calls and meetings.",
-      "keywords": ["google meet", "video call", "meetings", "conference", "chrome app", "web app", "screen sharing", "shortcut"]
-    },
-    {
-      "file": "~/Applications/Chrome Apps.localized/Messenger.app",
-      "name": "Messenger (Chrome app)",
-      "bundleId": "com.google.Chrome.app.bbdeiblfgdokhlblpgeaokenkfknecgl",
-      "description": "Chrome web app shortcut for Facebook Messenger chat.",
-      "keywords": ["messenger", "facebook", "chat", "messaging", "chrome app", "web app", "dm", "shortcut"]
-    },
-    {
-      "file": "~/Applications/Chrome Apps.localized/Sheets.app",
-      "name": "Sheets (Chrome app)",
-      "bundleId": "com.google.Chrome.app.fhihpiojkbmbpdjeoajapmgkhlnakfjf",
-      "description": "Chrome web app shortcut that opens Google Sheets, the collaborative online spreadsheet editor.",
-      "keywords": ["google sheets", "spreadsheet", "chrome app", "web app", "formulas", "tables", "collaboration", "shortcut"]
-    },
-    {
-      "file": "~/Applications/Chrome Apps.localized/Slides.app",
-      "name": "Slides (Chrome app)",
-      "bundleId": "com.google.Chrome.app.kefjledonklijopmnomlcbpllchaibag",
-      "description": "Chrome web app shortcut that opens Google Slides, the collaborative online presentation editor.",
-      "keywords": ["google slides", "presentations", "slides", "chrome app", "web app", "slideshow", "collaboration", "shortcut"]
-    },
-    {
-      "file": "~/Applications/Chrome Apps.localized/YouTube.app",
-      "name": "YouTube (Chrome app)",
-      "bundleId": "com.google.Chrome.app.agimnkijcaahngcdmfeangaknmldooml",
-      "description": "Chrome web app shortcut for watching YouTube videos in its own window.",
-      "keywords": ["youtube", "video", "streaming", "watch", "chrome app", "web app", "music videos", "shortcut"]
-    },
-    {
-      "file": "/System/Applications/App Store.app",
-      "name": "App Store",
-      "description": "Apple's store for browsing, buying, downloading and updating Mac apps.",
-      "keywords": ["apple", "store", "download apps", "updates", "purchases", "install apps"]
-    },
-    {
-      "file": "/System/Applications/Apps.app",
-      "name": "Apps",
-      "description": "Apple's app library that lists and launches all installed applications (the Launchpad replacement).",
-      "keywords": ["apple", "launchpad", "app library", "launcher", "installed apps", "all apps"]
-    },
-    {
-      "file": "/System/Applications/Automator.app",
-      "name": "Automator",
-      "description": "Apple's drag-and-drop automation tool for building workflows, quick actions and folder actions.",
-      "keywords": ["apple", "automation", "workflows", "quick actions", "scripting", "batch"]
-    },
-    {
-      "file": "/System/Applications/Books.app",
-      "name": "Books",
-      "description": "Apple Books for reading ebooks and listening to audiobooks.",
-      "keywords": ["apple", "ebooks", "reading", "audiobooks", "library", "epub"]
-    },
-    {
-      "file": "/System/Applications/Calculator.app",
-      "name": "Calculator",
-      "description": "Apple's calculator with basic, scientific and programmer modes plus unit conversion.",
-      "keywords": ["apple", "math", "calculate", "arithmetic", "scientific", "converter", "utility"]
-    },
-    {
-      "file": "/System/Applications/Calendar.app",
-      "name": "Calendar",
-      "description": "Apple's calendar app for events, meetings and schedules across iCloud, Google and Exchange accounts.",
-      "keywords": ["apple", "calendar", "events", "schedule", "meetings", "appointments", "ical"]
-    },
-    {
-      "file": "/System/Applications/Chess.app",
-      "name": "Chess",
-      "description": "Apple's built-in 3D chess game.",
-      "keywords": ["apple", "game", "chess", "board game", "play"]
-    },
-    {
-      "file": "/System/Applications/Clock.app",
-      "name": "Clock",
-      "description": "Apple's clock app with world clocks, alarms, stopwatch and timers.",
-      "keywords": ["apple", "clock", "alarm", "timer", "stopwatch", "world clock", "time"]
-    },
-    {
-      "file": "/System/Applications/Contacts.app",
-      "name": "Contacts",
-      "description": "Apple's address book for managing people, phone numbers, emails and addresses.",
-      "keywords": ["apple", "contacts", "address book", "people", "phone numbers", "email addresses"]
-    },
-    {
-      "file": "/System/Applications/Dictionary.app",
-      "name": "Dictionary",
-      "description": "Apple's dictionary and thesaurus for looking up word definitions and synonyms.",
-      "keywords": ["apple", "dictionary", "definitions", "thesaurus", "words", "synonyms", "lookup"]
-    },
-    {
-      "file": "/System/Applications/FaceTime.app",
-      "name": "FaceTime",
-      "description": "Apple's video and audio calling app for iPhone, iPad and Mac users.",
-      "keywords": ["apple", "video call", "audio call", "facetime", "calls", "camera"]
-    },
-    {
-      "file": "/System/Applications/FindMy.app",
-      "name": "Find My",
-      "description": "Apple's app for locating your devices, AirTags, items and friends on a map.",
-      "keywords": ["apple", "find devices", "airtag", "location", "lost", "tracking", "friends", "map"]
-    },
-    {
-      "file": "/System/Applications/Font Book.app",
-      "name": "Font Book",
-      "description": "Apple's font manager for installing, previewing and organizing fonts.",
-      "keywords": ["apple", "fonts", "typography", "typefaces", "install fonts", "font manager"]
-    },
-    {
-      "file": "/System/Applications/Freeform.app",
-      "name": "Freeform",
-      "description": "Apple's infinite-canvas whiteboard for brainstorming, sketching and collaborating with boards.",
-      "keywords": ["apple", "whiteboard", "canvas", "brainstorming", "diagrams", "collaboration", "sketch", "boards"]
-    },
-    {
-      "file": "/System/Applications/Games.app",
-      "name": "Games",
-      "description": "Apple's games hub for your game library, Apple Arcade and Game Center friends and achievements.",
-      "keywords": ["apple", "games", "gaming", "arcade", "game center", "library", "play"]
-    },
-    {
-      "file": "/System/Applications/Home.app",
-      "name": "Home",
-      "description": "Apple's HomeKit app for controlling smart home devices, lights, thermostats, cameras and scenes.",
-      "keywords": ["apple", "smart home", "homekit", "lights", "thermostat", "cameras", "automation", "scenes"]
-    },
-    {
-      "file": "/System/Applications/Image Capture.app",
-      "name": "Image Capture",
-      "description": "Apple's tool for importing photos from cameras, iPhones, memory cards and scanners.",
-      "keywords": ["apple", "import photos", "scanner", "camera", "scanning", "transfer images", "utility"]
-    },
-    {
-      "file": "/System/Applications/Image Playground.app",
-      "name": "Image Playground",
-      "description": "Apple Intelligence app for generating playful AI images from descriptions, concepts and people.",
-      "keywords": ["apple", "ai", "image generation", "apple intelligence", "create images", "art", "genmoji"]
-    },
-    {
-      "file": "/System/Applications/Journal.app",
-      "name": "Journal",
-      "description": "Apple's journaling app for writing daily entries with photos and reflection prompts.",
-      "keywords": ["apple", "journal", "diary", "writing", "entries", "reflection", "notes"]
-    },
-    {
-      "file": "/System/Applications/Mail.app",
-      "name": "Mail",
-      "description": "Apple's built-in email client for iCloud, Gmail, Exchange and IMAP accounts.",
-      "keywords": ["apple", "email", "mail client", "inbox", "imap", "icloud", "messages"]
-    },
-    {
-      "file": "/System/Applications/Maps.app",
-      "name": "Maps",
-      "description": "Apple Maps for directions, navigation, transit and exploring places.",
-      "keywords": ["apple", "maps", "navigation", "directions", "transit", "places", "travel", "gps"]
-    },
-    {
-      "file": "/System/Applications/Messages.app",
-      "name": "Messages",
-      "description": "Apple's messaging app for iMessage and SMS/RCS text messages synced with iPhone.",
-      "keywords": ["apple", "imessage", "sms", "texting", "chat", "messaging"]
-    },
-    {
-      "file": "/System/Applications/Mission Control.app",
-      "name": "Mission Control",
-      "description": "Apple's overview of all open windows, desktops and full-screen apps.",
-      "keywords": ["apple", "windows overview", "spaces", "desktops", "expose", "window management"]
-    },
-    {
-      "file": "/System/Applications/Music.app",
-      "name": "Music",
-      "description": "Apple Music app for streaming, your music library and playlists (successor to iTunes).",
-      "keywords": ["apple", "music", "streaming", "playlists", "library", "songs", "itunes"]
-    },
-    {
-      "file": "/System/Applications/News.app",
-      "name": "News",
-      "description": "Apple News for reading articles, magazines and personalized news.",
-      "keywords": ["apple", "news", "articles", "magazines", "reading", "headlines"]
+      "file": "Keka.app",
+      "name": "Keka",
+      "bundleId": "com.aone.keka",
+      "description": "File archiver and extractor supporting 7z, zip, rar, tar, gzip and more, with password-protected archives.",
+      "keywords": [
+        "archive",
+        "compression",
+        "unzip",
+        "extract",
+        "zip",
+        "7z",
+        "rar",
+        "tar",
+        "compress",
+        "utility"
+      ]
     },
     {
       "file": "/System/Applications/Notes.app",
       "name": "Notes",
       "description": "Apple's note-taking app with folders, checklists, attachments and iCloud sync.",
-      "keywords": ["apple", "notes", "note taking", "checklists", "writing", "icloud", "memos"]
-    },
-    {
-      "file": "/System/Applications/Passwords.app",
-      "name": "Passwords",
-      "description": "Apple's password manager for iCloud Keychain logins, passkeys, Wi-Fi passwords and verification codes.",
-      "keywords": ["apple", "passwords", "password manager", "passkeys", "keychain", "2fa", "credentials", "security"]
-    },
-    {
-      "file": "/System/Applications/Phone.app",
-      "name": "Phone",
-      "description": "Apple's Phone app for making and receiving iPhone calls from your Mac.",
-      "keywords": ["apple", "phone", "calls", "iphone", "dialer", "voicemail"]
-    },
-    {
-      "file": "/System/Applications/Photo Booth.app",
-      "name": "Photo Booth",
-      "description": "Apple's fun camera app for taking selfies and videos with effects.",
-      "keywords": ["apple", "camera", "selfies", "photos", "effects", "webcam", "fun"]
-    },
-    {
-      "file": "/System/Applications/Photos.app",
-      "name": "Photos",
-      "description": "Apple's photo library for organizing, editing and syncing photos and videos with iCloud.",
-      "keywords": ["apple", "photos", "pictures", "photo library", "editing", "albums", "icloud", "images"]
-    },
-    {
-      "file": "/System/Applications/Podcasts.app",
-      "name": "Podcasts",
-      "description": "Apple Podcasts for subscribing to and listening to podcasts.",
-      "keywords": ["apple", "podcasts", "audio", "shows", "episodes", "listening"]
-    },
-    {
-      "file": "/System/Applications/Preview.app",
-      "name": "Preview",
-      "description": "Apple's viewer for PDFs and images with annotation, form filling, signatures and markup.",
-      "keywords": ["apple", "pdf", "images", "viewer", "annotate", "markup", "sign documents", "preview"]
-    },
-    {
-      "file": "/System/Applications/QuickTime Player.app",
-      "name": "QuickTime Player",
-      "description": "Apple's media player that also records the screen, movies and audio.",
-      "keywords": ["apple", "video player", "screen recording", "movie", "audio recording", "media player"]
-    },
-    {
-      "file": "/System/Applications/Reminders.app",
-      "name": "Reminders",
-      "description": "Apple's to-do list app with reminders, due dates, lists and smart lists.",
-      "keywords": ["apple", "todo", "tasks", "reminders", "lists", "due dates", "productivity"]
-    },
-    {
-      "file": "/System/Applications/Shortcuts.app",
-      "name": "Shortcuts",
-      "description": "Apple's automation app for building multi-step shortcuts that automate apps and system actions.",
-      "keywords": ["apple", "automation", "shortcuts", "workflows", "scripting", "actions", "productivity"]
-    },
-    {
-      "file": "/System/Applications/Siri.app",
-      "name": "Siri",
-      "description": "Apple's voice assistant.",
-      "keywords": ["apple", "voice assistant", "siri", "speech", "assistant"]
-    },
-    {
-      "file": "/System/Applications/Stickies.app",
-      "name": "Stickies",
-      "description": "Apple's sticky notes that float on your desktop.",
-      "keywords": ["apple", "sticky notes", "notes", "desktop", "post-it", "memos"]
-    },
-    {
-      "file": "/System/Applications/Stocks.app",
-      "name": "Stocks",
-      "description": "Apple's stock market app for watching tickers, charts and business news.",
-      "keywords": ["apple", "stocks", "market", "shares", "finance", "tickers", "charts"]
-    },
-    {
-      "file": "/System/Applications/System Settings.app",
-      "name": "System Settings",
-      "description": "Apple's settings app for configuring macOS: displays, network, sound, users, privacy and more.",
-      "keywords": ["apple", "settings", "preferences", "system preferences", "configuration", "displays", "network", "privacy"]
-    },
-    {
-      "file": "/System/Applications/TV.app",
-      "name": "TV",
-      "description": "Apple TV app for streaming movies, TV shows and Apple TV+ originals.",
-      "keywords": ["apple", "tv", "movies", "shows", "streaming", "video", "apple tv+"]
-    },
-    {
-      "file": "/System/Applications/TextEdit.app",
-      "name": "TextEdit",
-      "description": "Apple's simple text editor for plain text and rich text (RTF) documents.",
-      "keywords": ["apple", "text editor", "plain text", "rtf", "writing", "documents", "txt"]
-    },
-    {
-      "file": "/System/Applications/Time Machine.app",
-      "name": "Time Machine",
-      "description": "Apple's backup browser for restoring files from Time Machine backups.",
-      "keywords": ["apple", "backup", "restore", "time machine", "recovery", "history"]
-    },
-    {
-      "file": "/System/Applications/Tips.app",
-      "name": "Tips",
-      "description": "Apple's tips and tricks for getting more out of your Mac.",
-      "keywords": ["apple", "tips", "help", "tutorials", "learn"]
-    },
-    {
-      "file": "/System/Applications/VoiceMemos.app",
-      "name": "Voice Memos",
-      "description": "Apple's audio recorder for quick voice recordings synced across devices.",
-      "keywords": ["apple", "voice recording", "audio recorder", "memos", "microphone", "dictation"]
-    },
-    {
-      "file": "/System/Applications/Weather.app",
-      "name": "Weather",
-      "description": "Apple's weather app with forecasts, radar maps and severe weather alerts.",
-      "keywords": ["apple", "weather", "forecast", "temperature", "rain", "radar"]
-    },
-    {
-      "file": "/System/Applications/iPhone Mirroring.app",
-      "name": "iPhone Mirroring",
-      "description": "Apple's app for viewing and controlling your iPhone from your Mac.",
-      "keywords": ["apple", "iphone", "mirroring", "remote control", "continuity", "phone screen"]
+      "keywords": [
+        "apple",
+        "notes",
+        "note taking",
+        "checklists",
+        "writing",
+        "icloud",
+        "memos"
+      ]
     },
     {
       "file": "/System/Applications/Utilities/Activity Monitor.app",
       "name": "Activity Monitor",
       "description": "Apple's task manager showing CPU, memory, energy, disk and network usage per process, with force quit.",
-      "keywords": ["apple", "task manager", "processes", "cpu", "memory", "force quit", "performance", "utility", "system monitor"]
-    },
-    {
-      "file": "/System/Applications/Utilities/AirPort Utility.app",
-      "name": "AirPort Utility",
-      "description": "Apple's tool for managing AirPort Wi-Fi base stations and Time Capsules.",
-      "keywords": ["apple", "airport", "wifi", "router", "base station", "network", "utility"]
-    },
-    {
-      "file": "/System/Applications/Utilities/Audio MIDI Setup.app",
-      "name": "Audio MIDI Setup",
-      "description": "Apple's utility for configuring audio devices, sample rates, multi-output devices and MIDI studios.",
-      "keywords": ["apple", "audio devices", "midi", "sound settings", "sample rate", "aggregate device", "utility"]
-    },
-    {
-      "file": "/System/Applications/Utilities/Bluetooth File Exchange.app",
-      "name": "Bluetooth File Exchange",
-      "description": "Apple's utility for sending files to devices over Bluetooth.",
-      "keywords": ["apple", "bluetooth", "file transfer", "send files", "utility"]
-    },
-    {
-      "file": "/System/Applications/Utilities/Boot Camp Assistant.app",
-      "name": "Boot Camp Assistant",
-      "description": "Apple's assistant for installing Windows in a separate partition on Intel Macs.",
-      "keywords": ["apple", "windows", "boot camp", "partition", "dual boot", "utility"]
-    },
-    {
-      "file": "/System/Applications/Utilities/ColorSync Utility.app",
-      "name": "ColorSync Utility",
-      "description": "Apple's tool for managing color profiles and calculating color conversions.",
-      "keywords": ["apple", "color profiles", "icc", "calibration", "color management", "utility"]
-    },
-    {
-      "file": "/System/Applications/Utilities/Console.app",
-      "name": "Console",
-      "description": "Apple's log viewer for system logs, crash reports and diagnostic messages.",
-      "keywords": ["apple", "logs", "system logs", "crash reports", "debugging", "diagnostics", "utility", "log viewer"]
-    },
-    {
-      "file": "/System/Applications/Utilities/Digital Color Meter.app",
-      "name": "Digital Color Meter",
-      "description": "Apple's utility for reading the color value of any pixel on screen.",
-      "keywords": ["apple", "color picker", "pixel color", "eyedropper", "rgb", "design", "utility"]
-    },
-    {
-      "file": "/System/Applications/Utilities/Disk Utility.app",
-      "name": "Disk Utility",
-      "description": "Apple's disk manager for formatting, erasing, partitioning and repairing disks and creating disk images.",
-      "keywords": ["apple", "disk", "format", "erase", "partition", "repair", "first aid", "apfs", "disk image", "usb drive", "utility"]
-    },
-    {
-      "file": "/System/Applications/Utilities/Grapher.app",
-      "name": "Grapher",
-      "description": "Apple's tool for plotting 2D and 3D mathematical equations and graphs.",
-      "keywords": ["apple", "graphs", "equations", "math", "plotting", "visualization", "utility"]
-    },
-    {
-      "file": "/System/Applications/Utilities/Magnifier.app",
-      "name": "Magnifier",
-      "description": "Apple's accessibility magnifier for zooming into things using a connected camera or iPhone.",
-      "keywords": ["apple", "magnifier", "zoom", "accessibility", "camera", "utility"]
-    },
-    {
-      "file": "/System/Applications/Utilities/Migration Assistant.app",
-      "name": "Migration Assistant",
-      "description": "Apple's tool for transferring data, apps and settings from another Mac, PC or backup.",
-      "keywords": ["apple", "migration", "transfer data", "new mac", "backup restore", "setup", "utility"]
-    },
-    {
-      "file": "/System/Applications/Utilities/Print Center.app",
-      "name": "Print Center",
-      "description": "Apple's print queue manager for printers and print jobs.",
-      "keywords": ["apple", "printing", "printers", "print queue", "print jobs", "utility"]
-    },
-    {
-      "file": "/System/Applications/Utilities/Screen Sharing.app",
-      "name": "Screen Sharing",
-      "description": "Apple's remote desktop client for viewing and controlling other Macs over VNC or iCloud.",
-      "keywords": ["apple", "screen sharing", "remote desktop", "vnc", "remote control", "utility"]
-    },
-    {
-      "file": "/System/Applications/Utilities/Screenshot.app",
-      "name": "Screenshot",
-      "description": "Apple's built-in screenshot and screen recording tool (also on Shift-Cmd-5).",
-      "keywords": ["apple", "screenshot", "screen capture", "screen recording", "capture", "utility"]
-    },
-    {
-      "file": "/System/Applications/Utilities/Script Editor.app",
-      "name": "Script Editor",
-      "description": "Apple's editor for writing and running AppleScript and JavaScript for Automation scripts.",
-      "keywords": ["apple", "applescript", "scripting", "automation", "jxa", "editor", "utility"]
-    },
-    {
-      "file": "/System/Applications/Utilities/System Information.app",
-      "name": "System Information",
-      "description": "Apple's detailed hardware and software report: specs, devices, memory, storage and more.",
-      "keywords": ["apple", "system info", "hardware", "specs", "devices", "report", "serial number", "utility"]
-    },
-    {
-      "file": "/System/Applications/Utilities/Terminal.app",
-      "name": "Terminal",
-      "description": "Apple's built-in terminal emulator for the command line and shell.",
-      "keywords": ["apple", "terminal", "command line", "shell", "cli", "console", "zsh", "bash", "utility"]
-    },
-    {
-      "file": "/System/Applications/Utilities/VoiceOver Utility.app",
-      "name": "VoiceOver Utility",
-      "description": "Apple's configuration tool for the VoiceOver screen reader.",
-      "keywords": ["apple", "voiceover", "screen reader", "accessibility", "utility"]
+      "keywords": [
+        "apple",
+        "task manager",
+        "processes",
+        "cpu",
+        "memory",
+        "force quit",
+        "performance",
+        "utility",
+        "system monitor"
+      ]
     }
   ]
 }
