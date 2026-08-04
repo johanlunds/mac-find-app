@@ -21,9 +21,26 @@ a while.
 
 ## Screenshots
 
+Searching by category instead of by name — "menubar" surfaces Thaw and the
+rest of the utilities I can never name:
+
+![Searching for "menubar"](docs/screenshots/search-menubar.png)
+
+The "database GUIs" problem, solved:
+
+![Searching for "database"](docs/screenshots/search-database.png)
+
+And the app I don't even own, found by the name I actually remember:
+
+![Searching for "photoshop" finds Pixelmator Pro](docs/screenshots/search-photoshop.png)
+
 The catalog in Settings, mid-analysis:
 
 ![Settings window analyzing the app catalog](docs/screenshots/settings-catalog.png)
+
+First launch:
+
+![Welcome screen](docs/screenshots/welcome.png)
 
 ## How it works
 
