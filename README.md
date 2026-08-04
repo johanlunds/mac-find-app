@@ -21,26 +21,7 @@ a while.
 
 ## Screenshots
 
-Searching by category instead of by name — "menubar" surfaces Thaw and the
-rest of the utilities I can never name:
-
-<img src="docs/screenshots/search-menubar.png" width="30%" alt="Searching for &quot;menubar&quot;">
-
-The "database GUIs" problem, solved:
-
-<img src="docs/screenshots/search-database.png" width="30%" alt="Searching for &quot;database&quot;">
-
-And the app I don't even own, found by the name I actually remember:
-
-<img src="docs/screenshots/search-photoshop.png" width="30%" alt="Searching for &quot;photoshop&quot; finds Pixelmator Pro">
-
-The catalog in Settings, mid-analysis:
-
-<img src="docs/screenshots/settings-catalog.png" width="30%" alt="Settings window analyzing the app catalog">
-
-First launch:
-
-<img src="docs/screenshots/welcome.png" width="30%" alt="Welcome screen">
+<img src="docs/screenshots/search-menubar.png" width="40%" alt="Searching for &quot;menubar&quot;"> <img src="docs/screenshots/search-database.png" width="40%" alt="Searching for &quot;database&quot;"> <img src="docs/screenshots/search-photoshop.png" width="40%" alt="Searching for &quot;photoshop&quot; finds Pixelmator Pro"> <img src="docs/screenshots/settings-catalog.png" width="40%" alt="Settings window analyzing the app catalog"> <img src="docs/screenshots/welcome.png" width="40%" alt="Welcome screen">
 
 ## How it works
 
@@ -58,33 +39,25 @@ First launch:
   `/System/Applications/Utilities`.
 - **Freshness**: those locations are rescanned on every keystroke, so removed
   apps never appear and newly added apps still match by name (add descriptions
-  by regenerating the catalog).
-
-Catalog `file` keys follow the scan roots: bare or relative under
-`/Applications` (`Thaw.app`, `Some Folder/App.app`), `~/Applications/…` for user
-apps, and absolute paths for system apps (`/System/Applications/Notes.app`).
+  by regenerating the catalog in Settings).
 
 ## Requirements
 
 - macOS 14+
-- Swift 5.9+ (Xcode command line tools)
 - The [`claude` CLI](https://claude.com/claude-code) — only for generating the
-  catalog, not for searching
+  catalog, not for searching. The apps are indexed with `claude --prompt ...`
 
-## Usage
+## How to install and use
 
-```sh
-swift run                 # run directly
-Scripts/build-app.sh      # build "build/Find App.app"
-cp -R "build/Find App.app" /Applications/
-open -a "Find App.app"
-```
-
+- **Download:**
 - The search field is focused automatically when the app opens/activates.
 - **↑/↓** select, **Enter** launches, **Esc** hides, **⌘Q** quits.
-- Reopening the app (Dock/Spotlight/Raycast) brings the panel back.
+- Reopening the app (from Dock/Spotlight/Raycast) brings the panel back.
+- On **first launch** (no catalog in Application Support yet) the app opens a
+welcome pane offering **Analyze My Apps** / **Skip for Now** — name-based
+search works fine until the analysis runs.
 
-## Settings & regenerating the catalog
+### Settings & regenerating the catalog
 
 Open **Settings** (⌘, — or the gear in the search panel's footer) to browse
 every installed app with its description and keyword chips, filter them, and
@@ -99,6 +72,8 @@ regenerate entries:
 yourself. Your notes are treated as authoritative — above anything the model
 knows or finds online — so internal company apps and your own projects get
 accurate descriptions and keywords.
+
+## How it runs Claude
 
 Generation spawns your local `claude` CLI (research only — the CLI returns
 JSON, the app merges and saves it). Apps are sent in batches of 8, with up to
@@ -118,10 +93,6 @@ every installed app would approach the model's 64k output-token limit, risking
 a truncated run. Three concurrent batches measured ~2.4x faster than
 sequential with no rate limiting.
 
-On **first launch** (no catalog in Application Support yet) the app opens a
-welcome pane offering **Analyze My Apps** / **Skip for Now** — name-based
-search works fine until the analysis runs.
-
 There's also a script route that does the same thing outside the app:
 
 ```sh
@@ -132,7 +103,17 @@ Catalog search order: `$FINDAPP_CATALOG` → `~/Library/Application
 Support/FindApp/catalog.json` → next to the executable / bundle resources →
 `Resources/catalog.json` in the current directory.
 
-## Layout
+## How to build
+
+```sh
+swift run                 # run directly
+
+Scripts/build-app.sh      # build "build/Find App.app"
+cp -R "build/Find App.app" /Applications/
+open -a "Find App.app"
+```
+
+## Source structure
 
 ```
 Sources/FindApp/   app code (search engine, panel UI, app lifecycle)
@@ -145,7 +126,7 @@ build/             generated: "Find App.app", AppIcon.icns (gitignored)
 The icon is generated from [Icon/make-icon.swift](Icon/make-icon.swift);
 `build-app.sh` re-renders it automatically when that file changes.
 
-## Development
+## Testing
 
 ```sh
 swift run FindApp --search "mac menubar app"       # test matching quality
@@ -162,9 +143,6 @@ Application Support catalog aside:
 
 ```sh
 defaults delete com.johanlunds.FindApp
+rm ~/Library/Application\ Support/FindApp/catalog.json
 ```
 
-## Built with
-
-Written with [Claude Code](https://claude.com/claude-code) — including the app
-icon, which is drawn programmatically in Swift.
