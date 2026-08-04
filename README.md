@@ -75,23 +75,27 @@ accurate descriptions and keywords.
 
 ## How it runs Claude
 
-Generation spawns your local `claude` CLI (research only — the CLI returns
-JSON, the app merges and saves it). Apps are sent in batches of 8, with up to
-3 batches running concurrently, and each batch streams its response
-(`--output-format stream-json`) so the progress bar advances per app as each
-entry finishes rather than per batch.
+Generation spawns your local `claude` CLI, one process per batch of 8 apps,
+run one after another:
 
-Results are merged and saved once, after all batches finished regularly — a
-cancelled or failed run discards them, and Cancel (or quitting) terminates the
-running CLI processes. Each save keeps the previous catalog as a timestamped
-backup (`catalog.yyyyMMdd-HHmmss-SSS.backup.json`, newest 5 kept).
+```sh
+claude -p "<prompt listing 8 apps>" --output-format json \
+  --effort medium --safe-mode --allowed-tools WebSearch
+```
 
-Batch size and concurrency come from measurements: 8 apps per call costs ~144
-output tokens and ~2s per app, while much larger calls spend proportionally
-more thinking per app (~329 tokens and ~3s at 40 apps) — and one call covering
-every installed app would approach the model's 64k output-token limit, risking
-a truncated run. Three concurrent batches measured ~2.4x faster than
-sequential with no rate limiting.
+The CLI only researches and answers with JSON — it never touches files. The app
+parses each response, and the progress bar advances one step per finished
+batch. Web search is allowed so apps the model doesn't recognise can still be
+looked up; the bundle id is included as a hint.
+
+Results are merged and saved once, after all batches finished — a cancelled or
+failed run discards them, and Cancel terminates the running CLI process. Each
+save keeps the previous catalog as a timestamped backup
+(`catalog.yyyyMMdd-HHmmss-SSS.backup.json`, newest 5 kept).
+
+Batches are kept small deliberately: sending every installed app in one call
+would approach the model's output-token limit and risk losing a whole run to a
+truncated response.
 
 There's also a script route that does the same thing outside the app:
 
@@ -134,8 +138,7 @@ swift run FindApp --render-preview out.png "query" # offscreen panel screenshot
 swift run FindApp --render-settings out.png        # offscreen settings screenshot ("welcome" for first-run state)
 swift run FindApp --selftest-keys                  # key-handling self-test
 swift run FindApp --selftest-windows               # window/focus self-test
-swift run FindApp --selftest-generate [fileKey|N] [instructions]  # real AI generation: one app, or N apps to exercise parallel batching
-swift run FindApp --selftest-generate 24 --cancel-after 10        # verify Cancel kills every batch process and keeps the catalog intact
+swift run FindApp --selftest-generate [fileKey] [instructions]    # run real AI generation for the missing apps, or one named app
 ```
 
 To test the first-run flow, clear the app's user defaults and move the
